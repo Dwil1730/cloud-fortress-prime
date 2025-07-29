@@ -1,0 +1,9 @@
+.terraform/
+# Terraform junk
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# OS/IDE
+.DS_Store
+.vscode/
