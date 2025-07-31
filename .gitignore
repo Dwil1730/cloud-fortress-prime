@@ -1,0 +1,14 @@
+# Terraform files to ignore
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+.crash
+*.log
+
+# macOS system files
+.DS_Store
+
+# Python or Bash scripts
+__pycache__/
+*.pyc
