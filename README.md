@@ -1,4 +1,4 @@
-Cloud Fortress Prime — AWS Security & CrowdStrike Falcon SIEM Integration
+Enterprise-grade AWS security environment with centralized SIEM, automated response, and AI/ML threat detection.”
 🚀 Project Overview
 
 Cloud Fortress Prime is a secure, production-ready AWS environment designed to centralize threat detection and accelerate incident response. It integrates multiple log sources into CrowdStrike Falcon SIEM, applies infrastructure as code, and leverages AI/ML-powered AWS services to deliver enterprise-grade security monitoring, automation, and compliance alignment.
