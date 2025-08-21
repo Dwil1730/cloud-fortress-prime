@@ -1,5 +1,38 @@
 <<<<<<< HEAD
 # cloud-fortress-prime
+# Cloud Fortress Prime: AWS Security & CrowdStrike Falcon SIEM Integration
+
+## Project Overview
+Cloud Fortress Prime is a secure, production-ready AWS environment designed to integrate multiple log sources into CrowdStrike Falcon SIEM for centralized threat detection and automated incident response. This project demonstrates infrastructure as code, security automation, compliance best practices, and leverages advanced AWS security services and AI/ML capabilities to enhance threat intelligence and response.
+
+## Architecture Overview
+![Cloud Fortress Prime Architecture](./docs/cloud-fortress-prime-architecture.png)
+
+The architecture diagram illustrates the AWS infrastructure components, log sources (GitHub, AWS CloudTrail, Google Workspace, JumpCloud SSO, Sophos Firewall, HP Switches & Access Points), CrowdStrike Falcon SIEM ingestion, and SOAR automation workflows using AWS Lambda and EventBridge.
+
+## Key Features
+- Multi-tier VPC with secure subnetting and IAM roles following least privilege principles
+- CI/CD pipeline with Docker, GitHub Actions, and Amazon ECR for streamlined deployments
+- Integration of AWS GuardDuty, CloudTrail, Security Hub, and AWS Detective for comprehensive threat detection and investigation
+- CrowdStrike Falcon SIEM log ingestion from seven critical sources for centralized security monitoring
+- Automated SOAR workflows leveraging AWS Lambda and EventBridge to accelerate incident response
+- Infrastructure as code using Terraform for repeatable, scalable deployments
+- Incorporation of AI/ML-powered services such as Amazon Macie for automated sensitive data discovery and classification
+- Use of AWS Security Hub integrated with GuardDuty and CloudTrail to provide a unified security posture dashboard
+- Secrets management and encryption using AWS Secrets Manager and AWS KMS to safeguard credentials and sensitive data
+
+## AI/ML and Advanced Security Integration
+This project embraces AWS’s AI/ML capabilities to enhance security operations:
+- **Amazon Macie** automatically discovers and classifies sensitive data, reducing risk of data exposure.
+- **AWS Detective** provides machine learning-driven insights to accelerate root cause analysis of security findings.
+- **AWS Security Hub** aggregates findings from multiple services, enabling automated security response playbooks.
+- Planned integration with AI-powered automation and anomaly detection to continuously improve threat detection accuracy.
+
+## Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Dwil1730/cloud-fortress-prime.git
+   cd cloud-fortress-prime
 
 ---
 
