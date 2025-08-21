@@ -1,44 +1,54 @@
-<<<<<<< HEAD
-# cloud-fortress-prime
-# Cloud Fortress Prime: AWS Security & CrowdStrike Falcon SIEM Integration
+Cloud Fortress Prime — AWS Security & CrowdStrike Falcon SIEM Integration
+🚀 Project Overview
 
-## Project Overview
-Cloud Fortress Prime is a secure, production-ready AWS environment designed to integrate multiple log sources into CrowdStrike Falcon SIEM for centralized threat detection and automated incident response. This project demonstrates infrastructure as code, security automation, compliance best practices, and leverages advanced AWS security services and AI/ML capabilities to enhance threat intelligence and response.
+Cloud Fortress Prime is a secure, production-ready AWS environment designed to centralize threat detection and accelerate incident response. It integrates multiple log sources into CrowdStrike Falcon SIEM, applies infrastructure as code, and leverages AI/ML-powered AWS services to deliver enterprise-grade security monitoring, automation, and compliance alignment.
 
-## Architecture Overview
-![Cloud Fortress Prime Architecture](./docs/cloud-fortress-prime-architecture.png)
+🏗️ Architecture Overview
 
-The architecture diagram illustrates the AWS infrastructure components, log sources (GitHub, AWS CloudTrail, Google Workspace, JumpCloud SSO, Sophos Firewall, HP Switches & Access Points), CrowdStrike Falcon SIEM ingestion, and SOAR automation workflows using AWS Lambda and EventBridge.
+The architecture includes:
 
-## Key Features
-- Multi-tier VPC with secure subnetting and IAM roles following least privilege principles
-- CI/CD pipeline with Docker, GitHub Actions, and Amazon ECR for streamlined deployments
-- Integration of AWS GuardDuty, CloudTrail, Security Hub, and AWS Detective for comprehensive threat detection and investigation
-- CrowdStrike Falcon SIEM log ingestion from seven critical sources for centralized security monitoring
-- Automated SOAR workflows leveraging AWS Lambda and EventBridge to accelerate incident response
-- Infrastructure as code using Terraform for repeatable, scalable deployments
-- Incorporation of AI/ML-powered services such as Amazon Macie for automated sensitive data discovery and classification
-- Use of AWS Security Hub integrated with GuardDuty and CloudTrail to provide a unified security posture dashboard
-- Secrets management and encryption using AWS Secrets Manager and AWS KMS to safeguard credentials and sensitive data
+AWS Infrastructure: Multi-tier VPCs, IAM least privilege, encrypted storage, secrets management (KMS, Secrets Manager).
 
-## AI/ML and Advanced Security Integration
-This project embraces AWS’s AI/ML capabilities to enhance security operations:
-- **Amazon Macie** automatically discovers and classifies sensitive data, reducing risk of data exposure.
-- **AWS Detective** provides machine learning-driven insights to accelerate root cause analysis of security findings.
-- **AWS Security Hub** aggregates findings from multiple services, enabling automated security response playbooks.
-- Planned integration with AI-powered automation and anomaly detection to continuously improve threat detection accuracy.
+Log Sources: GitHub, AWS CloudTrail, Google Workspace, JumpCloud SSO, Sophos Firewall, HP Switches & Access Points.
 
-## Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Dwil1730/cloud-fortress-prime.git
-   cd cloud-fortress-prime
+SIEM: Centralized ingestion into CrowdStrike Falcon.
 
----
+SOAR Automation: AWS Lambda + EventBridge for automated response workflows.
 
-## 📁 Project Structure
+AI/ML Security: Amazon Macie (sensitive data discovery), AWS Detective (ML-driven investigation), and Security Hub (aggregated findings + dashboards).
 
-```
+📊 [Architecture Diagram here — ![49D0E88B-7F96-4E9C-A1F8-961D36F0D5EA](https://github.com/user-attachments/assets/2c2e1f67-781f-413c-9d4c-605e3b5261ea)
+
+
+🔑 Key Features
+
+Multi-tier VPC with IAM least privilege for secure cloud segmentation.
+
+CI/CD pipelines with Docker, GitHub Actions, and Amazon ECR for streamlined deployments.
+
+AWS GuardDuty, CloudTrail, Security Hub, and Detective integrated for unified threat detection.
+
+CrowdStrike Falcon SIEM ingestion from seven critical log sources.
+
+Automated SOAR workflows with AWS Lambda & EventBridge for faster incident remediation.
+
+Infrastructure as Code with Terraform for scalable, repeatable deployments.
+
+AI/ML integration (Amazon Macie, AWS Detective) for advanced detection & response.
+
+Compliance-ready controls documented for GDPR, HIPAA, SOC 2 audit alignment.
+
+🤖 AI/ML & Advanced Security Enhancements
+
+Amazon Macie: Automated discovery/classification of sensitive data to reduce exposure risks.
+
+AWS Detective: ML-driven insights for faster root cause analysis of findings.
+
+AWS Security Hub: Unified posture dashboard with automated playbooks.
+
+Future Enhancements: AI-driven anomaly detection for continuous improvement.
+
+📁 Project Structure
 cloud-fortress-prime/
 ├── README.md
 ├── .gitignore
@@ -56,55 +66,33 @@ cloud-fortress-prime/
 │       ├── s3-bucket-config.png
 │       └── dynamodb-status.png
 └── app-code/ (optional)      ← Any app or automation code
-```
 
-## 📌 Daily Logs
+📅 Project Progress & Milestones
 
-- [Day 01 – Setup](docs/daily-logs/day-01-setup.md)
-- [Day 02 – Terraform Backend](docs/daily-logs/day-02-terraform-backend.md)
+✅ Day 1 — Setup: IAM, CloudWatch, Billing, CLI/Tools installation.
 
-## 🛠️ Terraform Details
+✅ Day 2 — Terraform Backend Mastery: Remote state with S3 & DynamoDB (encrypted, secure).
 
-Remote state stored in:
+🔜 Day 3+: Core infrastructure deployment (VPC, networking, compute), advanced security integration.
 
-```
-s3://cloud-fortress-prime-terraform-state-2025/dev/terraform.tfstate
-```
+Full daily logs available in docs/daily-logs/
+.
 
-Locking table:
+🖼️ Screenshots
 
-```
-cloud-fortress-terraform-locks
-```
+See screenshots/
+ for working infrastructure proofs (Terraform apply, S3 config, DynamoDB locks, etc.).
 
-## 🖼️ Screenshots
+⚡ Quick Start
+# Clone repository
+git clone https://github.com/Dwil1730/cloud-fortress-prime.git
+cd cloud-fortress-prime
 
-Visual evidence of working infrastructure is in [screenshots/day-02/](screenshots/day-02/)
 
-=======
-Day 1 Completion Certificate
-When finished, add this to your daily log:
+✅ Now your README reads like a professional project case study. It shows:
 
-✅ Day 1 Complete
-Duration: 1 hours
-AWS Services Configured: IAM, CloudWatch, Billing
-Tools Installed: AWS CLI, Terraform, Docker, Git
-Documentation: Started daily logging process
-Next: Ready for Terraform backend setup on Day 2
+Execution (daily logs/screenshots).
 
-Total Project Progress: 6.25% (1/16 days)
-## 📅 Project Progress & Milestones
+Enterprise credibility (SIEM, SOAR, AWS services, compliance).
 
-### Day 2 Completion Certificate
-
-✅ **Day 2 Complete - Terraform Backend Mastery**  
-**Duration:** 2 hours  
-**Infrastructure Focus:** Remote state management with AWS S3 and DynamoDB  
-**Security:** Encrypted state storage with public access blocked  
-**Skills Gained:**  
-- Terraform backend configuration  
-- State management best practices  
-- AWS S3 and DynamoDB usage for infrastructure as code  
-
-**Next Steps:** Prepare for core infrastructure deployment including VPC, networking, and compute resources
->>>>>>> 7881a9c80684aaaff865289c8f14a63885e34508
+Vision (future AI/ML enhancements).
