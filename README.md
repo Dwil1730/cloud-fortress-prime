@@ -60,9 +60,3 @@ Project Progress & Roadmap
 - Phase 3 – DLP & Data Security (Upcoming): Macie/Netskope-style rules, data classification, compliance dashboards
 - Future Enhancements: Automated SOAR, AI/ML threat modeling, anomaly detection, compliance optimization
 
-Contact
-
-Diamond Williams
-- Email: diamondwilliams1730@gmail.com
-- Phone: 510-369-9571
-- GitHub: github.com/Dwil1730
