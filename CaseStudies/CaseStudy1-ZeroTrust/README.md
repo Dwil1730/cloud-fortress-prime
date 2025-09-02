@@ -1,7 +1,7 @@
 # Case Study 1: Zero-Trust Network Architecture Implementation
 
-![Architecture Overview](images//Users/cob/Desktop/cloud-fortress-prime\ Project/Terraform/Fully\ updated\ as\ of\ check\ list/architecture.md/screenshots/AWS_CaseStudy_VPC/VPC\ Folder/VPC\ _Dashboard.png )
-
+![Architecture Overview]
+<img width="1435" height="686" alt="VPC _Dashboard" src="https://github.com/user-attachments/assets/93784954-6829-4138-ad87-8a5c4fb56fe1" />
 ## Executive Summary
 **Challenge:** Secure multi-tier network with zero-trust principles  
 **Solution:** Multi-tier VPC, microsegmentation, high-availability NAT gateways  
@@ -27,7 +27,11 @@
 - Private Subnets: App tier  
 - Database Subnets: Data tier  
 
-![Subnets Overview](images/Subnets_Public_Private.png)
+Subnets Overview
+
+ <img width="603" height="263" alt="Subnets" src="https://github.com/user-attachments/assets/f39f1c7e-30a0-4e32-8fe4-1bad3d8ba3a4" /><img width="1297" height="587" alt="Database Subnets A B" src="https://github.com/user-attachments/assets/1b88d1ba-42dd-44cf-8adb-9e3b0b9568aa" />
+
+
 
 ### Phase 2: Security Controls Implementation
 **Security Groups (Microsegmentation)**
@@ -50,7 +54,8 @@
 - Private subnet routing through NAT  
 - Internet Gateway restricted to public subnets  
 
-![Route Tables](images/Route_Tables.png)
+![Route Tables
+<img width="2870" height="1372" alt="image" src="https://github.com/user-attachments/assets/cc48cb73-97cf-4943-965f-e939f79b61fb" />
 
 ---
 
