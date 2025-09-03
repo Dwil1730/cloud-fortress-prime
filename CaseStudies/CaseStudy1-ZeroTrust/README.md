@@ -2,34 +2,35 @@
 
 ![Architecture Overview]
 <img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" /> />
-## Executive Summary
-**Challenge:** Secure multi-tier network with zero-trust principles  
-**Solution:** Multi-tier VPC, microsegmentation, high-availability NAT gateways  
-**Timeline:** 3 days (July 30 – August 1, 2025)  
-**Impact:** Reduced lateral movement, enforced defense-in-depth, compliance-ready
-=======
+
+Executive Summary
+Challenge: Secure multi-tier network with zero-trust principles  
+Solution: Multi-tier VPC, microsegmentation, high-availability NAT gateways  
+Timeline: 3 days (July 30 – August 1, 2025)  
+Impact: Reduced lateral movement, enforced defense-in-depth, compliance-ready
+
  📋 Executive Summary
 
 | Aspect | Details |
 |--------|---------|
-| **Challenge** | Secure multi-tier network with zero-trust principles |
-| **Solution** | Multi-tier VPC, microsegmentation, high-availability NAT gateways |
-| **Timeline** | 3 days (July 30 – August 1, 2025) |
-| **Impact** | 100% tier isolation, reduced attack surface, compliance-ready architecture |
+| Challenge | Secure multi-tier network with zero-trust principles |
+| Solution | Multi-tier VPC, microsegmentation, high-availability NAT gateways |
+| Timeline| 3 days (July 30 – August 1, 2025) |
+| Impact | 100% tier isolation, reduced attack surface, compliance-ready architecture |
 
 
  🎯 Business Challenge
 
 Modern enterprise applications face significant security challenges:
 
-- **Lateral Movement Risk**: Flat networks enable attackers to move freely between systems
-- **Attack Surface Exposure**: Unrestricted internet access increases vulnerability
-- **Compliance Gaps**: Manual security group management creates audit findings
-- **Scalability Constraints**: Legacy architectures don't scale with business growth
+- Lateral Movement Risk: Flat networks enable attackers to move freely between systems
+- Attack Surface Exposure: Unrestricted internet access increases vulnerability
+- Compliance Gaps**: Manual security group management creates audit findings
+- Scalability Constraints: Legacy architectures don't scale with business growth
 
  🏗️ Technical Architecture
 
- HEAD
+
 Subnets Overview
 
  <img width="603" height="263" alt="Subnets" src="https://github.com/user-attachments/assets/f39f1c7e-30a0-4e32-8fe4-1bad3d8ba3a4" /><img width="1297" height="587" alt="Database Subnets A B" src="https://github.com/user-attachments/assets/1b88d1ba-42dd-44cf-8adb-9e3b0b9568aa" />
@@ -37,9 +38,9 @@ Subnets Overview
 
 
 Phase 2: Security Controls Implementation
-**Security Groups (Microsegmentation)**
+Security Groups (Microsegmentation)
 
-### Network Design
+ Network Design
 ```
 VPC: 10.0.0.0/16
 ├── Public Subnets (Web Tier)
@@ -78,43 +79,43 @@ HEAD
 ![Route Tables
 <img width="2870" height="1372" alt="image" src="https://github.com/user-attachments/assets/cc48cb73-97cf-4943-965f-e939f79b61fb" />
 
-### Security Groups Configuration
+ Security Groups Configuration
 ![Security Groups]
 <img width="1435" height="686" alt="SecurityGroups_ Inbound" src="https://github.com/user-attachments/assets/3414b786-a4b0-4671-956a-dde1f855b088" />
 <img width="1435" height="686" alt="SecurityGroups_ Outbound" src="https://github.com/user-attachments/assets/5474e75a-7678-435e-a9b6-f08d092b80b0" />
-*Microsegmentation rules enforcing zero-trust principles*
+Microsegmentation rules enforcing zero-trust principles*
 
 
-### Route Tables
+ Route Tables
 ![Route Tables]
 <img width="2870" height="1372" alt="image" src="https://github.com/user-attachments/assets/cc48cb73-97cf-4943-965f-e939f79b61fb" />
 *Controlled internet access through NAT gateways*
 
-### NAT Gateways
+ NAT Gateways
 ![NAT Gateways]
 <img width="687" height="347" alt="nat-gateways" src="https://github.com/user-attachments/assets/9b1de99d-6629-4884-9610-812360a8564d" />
 
-*High-availability NAT gateway deployment*
+High-availability NAT gateway deployment
 
-## 🔒 Security Outcomes
+ 🔒 Security Outcomes
 
 | Security Control | Status | Impact |
 |------------------|--------|---------|
-| **Tier Isolation** | ✅ Complete | 100% network segmentation |
-| **Internet Access Control** | ✅ Enforced | Zero direct DB internet access |
-| **Lateral Movement Prevention** | ✅ Active | Microsegmentation blocks unauthorized access |
-| **High Availability** | ✅ Configured | 3-second NAT failover |
+| Tier Isolation** | ✅ Complete | 100% network segmentation |
+| Internet Access Control** | ✅ Enforced | Zero direct DB internet access |
+| Lateral Movement Prevention** | ✅ Active | Microsegmentation blocks unauthorized access |
+| High Availability** | ✅ Configured | 3-second NAT failover |
 
-## 💼 Quantified Results
+ 💼 Quantified Results
 
-- 🎯 **100%** isolation between network tiers
-- 🎯 **0** direct internet connections to database
-- 🎯 **3-second** NAT gateway failover time
-- 🎯 **50%** reduction in security group complexity
+- 🎯 100% isolation between network tiers
+- 🎯 0 direct internet connections to database
+- 🎯 3-second NAT gateway failover time
+- 🎯 50% reduction in security group complexity
 
-## 🛠️ Implementation Code
+ 🛠️ Implementation Code
 
-### Terraform VPC Configuration
+Terraform VPC Configuration
 
 resource "aws_vpc" "main" {
   cidr_block           = "10.0.0.0/16"
@@ -142,35 +143,35 @@ resource "aws_subnet" "public" {
 }
 
 
-## 📚 Key Learnings
+📚 Key Learnings
 
-### What Worked Well
-- **Planning subnet CIDRs first** prevented redesign
-- **Security groups before apps** ensured clean deployment
-- **Consistent naming** reduced operational complexity
-- **Comprehensive testing** caught issues early
+ What Worked Well
+- Planning subnet CIDRs first** prevented redesign
+- Security groups before apps** ensured clean deployment
+- Consistent naming** reduced operational complexity
+- Comprehensive testing** caught issues early
 
-### Future Enhancements
+ Future Enhancements
 - [ ] VPC Flow Logs for traffic monitoring
 - [ ] Transit Gateway for multi-VPC connectivity
 - [ ] Network ACLs for additional security layer
 - [ ] VPN Gateway for hybrid connectivity
 
-## 🚀 Business Value
+ 🚀 Business Value
 
-### Immediate Impact
-- **Compliance Ready**: Aligned with zero-trust requirements
-- **Audit Friendly**: Clear security boundaries documented
-- **Operational Efficiency**: Automated security management
-- **Cost Optimized**: Right-sized NAT deployment
+ Immediate Impact
+- Compliance Ready: Aligned with zero-trust requirements
+- Audit Friendly: Clear security boundaries documented
+- Operational Efficiency**: Automated security management
+- Cost Optimized: Right-sized NAT deployment
 
-### Strategic Benefits
-- **Scalable Foundation**: Supports future growth
-- **Risk Reduction**: Significant attack surface reduction
-- **Enterprise Ready**: Meets security standards
+ Strategic Benefits
+- Scalable Foundation**: Supports future growth
+- Risk Reduction**: Significant attack surface reduction
+- Enterprise Ready**: Meets security standards
 
 ---
 
-**Project Duration**: July 30 – August 1, 2025  
-**Status**: ✅ Production Ready  
-**Next**: Infrastructure as Code automation
+Project Duration: July 30 – August 1, 2025  
+Status: ✅ Production Ready  
+Next: Infrastructure as Code automation
