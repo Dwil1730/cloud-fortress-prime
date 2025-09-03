@@ -172,6 +172,12 @@ resource "aws_subnet" "public" {
 
 ---
 
-Project Duration: July 30 – August 1, 2025  
-Status: ✅ Production Ready  
-Next: Infrastructure as Code automation
+# Zero-Trust Network Architecture — Case Study
+
+Executive Summary
+Project Type: Lab / Case Study  
+Duration:** July 30 – August 1, 2024  
+Status: ✅ Completed  
+Impact: Reduced lateral movement, tier isolation, compliance-ready architecture
+
+Summary: Implemented a multi-tier VPC with microsegmentation, NAT gateways, and security groups enforcing zero-trust principles. Demonstrates defense-in-depth, high availability, and compliance readiness.
