@@ -8,7 +8,7 @@
 **Timeline:** 3 days (July 30 – August 1, 2025)  
 **Impact:** Reduced lateral movement, enforced defense-in-depth, compliance-ready
 =======
-## 📋 Executive Summary
+ 📋 Executive Summary
 
 | Aspect | Details |
 |--------|---------|
@@ -18,7 +18,7 @@
 | **Impact** | 100% tier isolation, reduced attack surface, compliance-ready architecture |
 
 
-## 🎯 Business Challenge
+ 🎯 Business Challenge
 
 Modern enterprise applications face significant security challenges:
 
@@ -27,7 +27,7 @@ Modern enterprise applications face significant security challenges:
 - **Compliance Gaps**: Manual security group management creates audit findings
 - **Scalability Constraints**: Legacy architectures don't scale with business growth
 
-## 🏗️ Technical Architecture
+ 🏗️ Technical Architecture
 
  HEAD
 Subnets Overview
@@ -36,9 +36,9 @@ Subnets Overview
 
 
 
-### Phase 2: Security Controls Implementation
+Phase 2: Security Controls Implementation
 **Security Groups (Microsegmentation)**
-=======
+
 ### Network Design
 ```
 VPC: 10.0.0.0/16
@@ -69,25 +69,31 @@ VPC: 10.0.0.0/16
  📊 Screenshots
 
  VPC Architecture
-![VPC Dashboard]
+ [VPC Dashboard]
+ 
 <img width="1435" height="686" alt="VPC _Dashboard" src="https://github.com/user-attachments/assets/93784954-6829-4138-ad87-8a5c4fb56fe1" />
 *Complete VPC setup showing multi-tier architecture*
 
 HEAD
 ![Route Tables
 <img width="2870" height="1372" alt="image" src="https://github.com/user-attachments/assets/cc48cb73-97cf-4943-965f-e939f79b61fb" />
-=======
+
 ### Security Groups Configuration
-![Security Groups](screenshots/security-groups.png)
+![Security Groups]
+<img width="1435" height="686" alt="SecurityGroups_ Inbound" src="https://github.com/user-attachments/assets/3414b786-a4b0-4671-956a-dde1f855b088" />
+<img width="1435" height="686" alt="SecurityGroups_ Outbound" src="https://github.com/user-attachments/assets/5474e75a-7678-435e-a9b6-f08d092b80b0" />
 *Microsegmentation rules enforcing zero-trust principles*
 
 
 ### Route Tables
-![Route Tables](screenshots/route-tables.png)
+![Route Tables]
+<img width="2870" height="1372" alt="image" src="https://github.com/user-attachments/assets/cc48cb73-97cf-4943-965f-e939f79b61fb" />
 *Controlled internet access through NAT gateways*
 
 ### NAT Gateways
 ![NAT Gateways]
+<img width="687" height="347" alt="nat-gateways" src="https://github.com/user-attachments/assets/9b1de99d-6629-4884-9610-812360a8564d" />
+
 *High-availability NAT gateway deployment*
 
 ## 🔒 Security Outcomes
@@ -134,7 +140,7 @@ resource "aws_subnet" "public" {
     Type = "Public"
   }
 }
-```
+
 
 ## 📚 Key Learnings
 
