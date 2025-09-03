@@ -1,8 +1,7 @@
 # Case Study 1: Zero-Trust Network Architecture Implementation
 
-<<<<<<< HEAD
 ![Architecture Overview]
-<img width="1435" height="686" alt="VPC _Dashboard" src="https://github.com/user-attachments/assets/93784954-6829-4138-ad87-8a5c4fb56fe1" />
+<img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" /> />
 ## Executive Summary
 **Challenge:** Secure multi-tier network with zero-trust principles  
 **Solution:** Multi-tier VPC, microsegmentation, high-availability NAT gateways  
@@ -17,7 +16,7 @@
 | **Solution** | Multi-tier VPC, microsegmentation, high-availability NAT gateways |
 | **Timeline** | 3 days (July 30 – August 1, 2025) |
 | **Impact** | 100% tier isolation, reduced attack surface, compliance-ready architecture |
->>>>>>> 427c0a9 (Update README with improved Zero-Trust Architecture case study)
+
 
 ## 🎯 Business Challenge
 
@@ -30,7 +29,7 @@ Modern enterprise applications face significant security challenges:
 
 ## 🏗️ Technical Architecture
 
-<<<<<<< HEAD
+ HEAD
 Subnets Overview
 
  <img width="603" height="263" alt="Subnets" src="https://github.com/user-attachments/assets/f39f1c7e-30a0-4e32-8fe4-1bad3d8ba3a4" /><img width="1297" height="587" alt="Database Subnets A B" src="https://github.com/user-attachments/assets/1b88d1ba-42dd-44cf-8adb-9e3b0b9568aa" />
@@ -52,8 +51,7 @@ VPC: 10.0.0.0/16
 └── Database Subnets (Data Tier)
     ├── 10.0.100.0/24 (AZ-1a)
     └── 10.0.200.0/24 (AZ-1b)
-```
->>>>>>> 427c0a9 (Update README with improved Zero-Trust Architecture case study)
+
 
 ### Security Groups Architecture
 ├── Web Tier SG
@@ -68,28 +66,28 @@ VPC: 10.0.0.0/16
     ├── Inbound: DB ports from App Tier only
     └── Outbound: None (isolated)
 ```
+ 📊 Screenshots
 
-## 📊 Screenshots
-
-### VPC Architecture
-![VPC Dashboard](screenshots/vpc-dashboard.png)
+ VPC Architecture
+![VPC Dashboard]
+<img width="1435" height="686" alt="VPC _Dashboard" src="https://github.com/user-attachments/assets/93784954-6829-4138-ad87-8a5c4fb56fe1" />
 *Complete VPC setup showing multi-tier architecture*
 
-<<<<<<< HEAD
+HEAD
 ![Route Tables
 <img width="2870" height="1372" alt="image" src="https://github.com/user-attachments/assets/cc48cb73-97cf-4943-965f-e939f79b61fb" />
 =======
 ### Security Groups Configuration
 ![Security Groups](screenshots/security-groups.png)
 *Microsegmentation rules enforcing zero-trust principles*
->>>>>>> 427c0a9 (Update README with improved Zero-Trust Architecture case study)
+
 
 ### Route Tables
 ![Route Tables](screenshots/route-tables.png)
 *Controlled internet access through NAT gateways*
 
 ### NAT Gateways
-![NAT Gateways](screenshots/nat-gateways.png)
+![NAT Gateways]
 *High-availability NAT gateway deployment*
 
 ## 🔒 Security Outcomes
@@ -111,7 +109,7 @@ VPC: 10.0.0.0/16
 ## 🛠️ Implementation Code
 
 ### Terraform VPC Configuration
-```hcl
+
 resource "aws_vpc" "main" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
