@@ -1,7 +1,7 @@
 # Case Study 1: Zero-Trust Network Architecture Implementation
 
 Architecture Overview
-<img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" /> />
+<img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" />
 
 Executive Summary
 Challenge: Secure multi-tier network with zero-trust principles  
