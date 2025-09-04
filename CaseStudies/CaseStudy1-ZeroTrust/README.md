@@ -1,6 +1,6 @@
 # Case Study 1: Zero-Trust Network Architecture Implementation
 
-![Architecture Overview]
+Architecture Overview
 <img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" /> />
 
 Executive Summary
@@ -66,7 +66,7 @@ VPC: 10.0.0.0/16
 └── DB Tier SG
     ├── Inbound: DB ports from App Tier only
     └── Outbound: None (isolated)
-```
+
  📊 Screenshots
 
  VPC Architecture
@@ -169,15 +169,3 @@ resource "aws_subnet" "public" {
 - Scalable Foundation**: Supports future growth
 - Risk Reduction**: Significant attack surface reduction
 - Enterprise Ready**: Meets security standards
-
----
-
-# Zero-Trust Network Architecture — Case Study
-
-Executive Summary
-Project Type: Lab / Case Study  
-Duration:** July 30 – August 1, 2024  
-Status: ✅ Completed  
-Impact: Reduced lateral movement, tier isolation, compliance-ready architecture
-
-Summary: Implemented a multi-tier VPC with microsegmentation, NAT gateways, and security groups enforcing zero-trust principles. Demonstrates defense-in-depth, high availability, and compliance readiness.
