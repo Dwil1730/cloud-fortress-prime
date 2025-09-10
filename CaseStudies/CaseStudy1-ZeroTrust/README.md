@@ -68,7 +68,7 @@ Route Tables
 
 Controlled internet access through NAT gateways
 
-NAT Gateways
+  NAT Gateways
 <img width="687" height="347" alt="nat-gateways" src="https://github.com/user-attachments/assets/2f4ed3a8-4604-4ab4-954e-68a2c4392ac0"/>
 
 High-availability NAT gateway deployment
