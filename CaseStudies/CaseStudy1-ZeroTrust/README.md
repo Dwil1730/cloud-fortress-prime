@@ -53,6 +53,6 @@ Security Groups Architecture
 📊 Screenshots
 
 VPC Architecture
+<img width="1435" height="686" alt="VPC _Dashboard" src="https://github.com/user-attachments/assets/13f3f261-f026-474a-89e9-a478bcbf1b31" />
 
-Show Image
 Complete VPC setup showing multi-tier architecture
