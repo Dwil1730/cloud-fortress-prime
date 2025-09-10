@@ -75,25 +75,25 @@ VPC: 10.0.0.0/16
 <img width="1435" height="686" alt="VPC _Dashboard" src="https://github.com/user-attachments/assets/93784954-6829-4138-ad87-8a5c4fb56fe1" />
 *Complete VPC setup showing multi-tier architecture*
 
-HEAD
-![Route Tables
-<img width="2870" height="1372" alt="image" src="https://github.com/user-attachments/assets/cc48cb73-97cf-4943-965f-e939f79b61fb" />
+
+Route Tables
+<img width="2870" height="1372" alt="image" src="https://github.com/user-attachments/assets/cc48cb73-97cf-4943-965f-e939f79b61fb"/>
 
  Security Groups Configuration
-![Security Groups]
+
 <img width="1435" height="686" alt="SecurityGroups_ Inbound" src="https://github.com/user-attachments/assets/3414b786-a4b0-4671-956a-dde1f855b088" />
 <img width="1435" height="686" alt="SecurityGroups_ Outbound" src="https://github.com/user-attachments/assets/5474e75a-7678-435e-a9b6-f08d092b80b0" />
 Microsegmentation rules enforcing zero-trust principles*
 
 
  Route Tables
-![Route Tables]
+
 <img width="2870" height="1372" alt="image" src="https://github.com/user-attachments/assets/cc48cb73-97cf-4943-965f-e939f79b61fb" />
 *Controlled internet access through NAT gateways*
 
  NAT Gateways
-![NAT Gateways]
-<img width="687" height="347" alt="nat-gateways" src="https://github.com/user-attachments/assets/9b1de99d-6629-4884-9610-812360a8564d" />
+
+<img width="687" height="347" alt="nat-gateways" src="https://github.com/user-attachments/assets/9b1de99d-6629-4884-9610-812360a8564d"/>
 
 High-availability NAT gateway deployment
 
