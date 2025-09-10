@@ -147,8 +147,6 @@ Strategic Benefits
 ◻️ Enterprise Ready: Meets security standards
 
 
-Project Duration: July 30 – August 1, 2025
-
-Status: ✅ Production Ready
-
-Next: Infrastructure as Code automation
+- Project Duration: July 30 – August 1, 2025
+- Status: ✅ Production Ready
+- Next: Infrastructure as Code automation
