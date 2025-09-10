@@ -56,3 +56,9 @@ VPC Architecture
 <img width="1435" height="686" alt="VPC _Dashboard" src="https://github.com/user-attachments/assets/13f3f261-f026-474a-89e9-a478bcbf1b31" />
 
 Complete VPC setup showing multi-tier architecture
+
+Security Groups Configuration
+<img width="1435" height="686" alt="SecurityGroups_ Inbound" src="https://github.com/user-attachments/assets/9b134817-b356-440c-9636-225288caf70e" />
+<img width="1435" height="686" alt="SecurityGroups_ Outbound" src="https://github.com/user-attachments/assets/661afcd8-cf24-4b8b-9438-551b7bb7c437" />
+
+Microsegmentation rules enforcing zero-trust principles
