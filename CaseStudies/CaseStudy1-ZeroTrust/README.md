@@ -49,3 +49,10 @@ Security Groups Architecture
 - DB Tier SG
     - Inbound: DB ports from App Tier only
     - Outbound: None (isolated)
+    - 
+📊 Screenshots
+
+VPC Architecture
+
+Show Image
+Complete VPC setup showing multi-tier architecture
