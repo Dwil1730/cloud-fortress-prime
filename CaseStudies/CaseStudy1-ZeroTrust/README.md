@@ -124,10 +124,10 @@ What Worked Well
 
 Future Enhancements
 
- VPC Flow Logs for traffic monitoring
- Transit Gateway for multi-VPC connectivity
- Network ACLs for additional security layer
- VPN Gateway for hybrid connectivity
+ - VPC Flow Logs for traffic monitoring
+ - Transit Gateway for multi-VPC connectivity
+ - Network ACLs for additional security layer
+ - VPN Gateway for hybrid connectivity
 
 🚀 Business Value
 
@@ -140,9 +140,9 @@ Immediate Impact
 
 Strategic Benefits
 
-- Scalable Foundation: Supports future growth
-- Risk Reduction: Significant attack surface reduction
-- Enterprise Ready: Meets security standards
+◻️ Scalable Foundation: Supports future growth
+◻️ Risk Reduction: Significant attack surface reduction
+◻️ Enterprise Ready: Meets security standards
 
 
 Project Duration: July 30 – August 1, 2025
