@@ -19,7 +19,7 @@ Modern enterprise applications face significant security challenges:
 
 - Lateral Movement Risk: Flat networks enable attackers to move freely between systems
 - Attack Surface Exposure: Unrestricted internet access increases vulnerability
-- Compliance Gaps**: Manual security group management creates audit findings
+- Compliance Gaps: Manual security group management creates audit findings
 - Scalability Constraints: Legacy architectures don't scale with business growth
 
  🏗️ Technical Architecture
