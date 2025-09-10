@@ -62,3 +62,8 @@ Security Groups Configuration
 <img width="1435" height="686" alt="SecurityGroups_ Outbound" src="https://github.com/user-attachments/assets/661afcd8-cf24-4b8b-9438-551b7bb7c437" />
 
 Microsegmentation rules enforcing zero-trust principles
+
+Route Tables
+<img width="1435" height="686" alt="RouteTables" src="https://github.com/user-attachments/assets/3a04828c-b8ea-4018-b800-834bc8fd5cc1" />
+
+Controlled internet access through NAT gateways
