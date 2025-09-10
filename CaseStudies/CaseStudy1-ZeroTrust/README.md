@@ -3,12 +3,6 @@
 Architecture Overview
 <img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" />
 
-Executive Summary
-Challenge: Secure multi-tier network with zero-trust principles  
-Solution: Multi-tier VPC, microsegmentation, high-availability NAT gateways  
-Timeline: 3 days (July 30 – August 1, 2025)  
-Impact: Reduced lateral movement, enforced defense-in-depth, compliance-ready
-
  📋 Executive Summary
 
 | Aspect | Details |
@@ -29,7 +23,18 @@ Modern enterprise applications face significant security challenges:
 - Scalability Constraints: Legacy architectures don't scale with business growth
 
  🏗️ Technical Architecture
-
+ Network Design
+ 
+VPC: 10.0.0.0/16
+- Public Subnets (Web Tier)
+  - 10.0.1.0/24 (AZ-1a)
+  - 10.0.2.0/24 (AZ-1b)
+- Private Subnets (App Tier)  
+   - 10.0.10.0/24 (AZ-1a)
+   - 10.0.20.0/24 (AZ-1b)
+- Database Subnets (Data Tier)
+    - 10.0.100.0/24 (AZ-1a)
+    - 10.0.200.0/24 (AZ-1b)
 
 Subnets Overview
 
