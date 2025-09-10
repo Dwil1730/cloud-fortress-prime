@@ -75,11 +75,7 @@ High-availability NAT gateway deployment
 
 🔒 Security Outcomes
 
-Security Control | Status| Impact 
-Tier Isolation | ✅ Complete | 100% network segmentation
-Internet Access Control | ✅ Enforced| |Zero direct DB internet access 
-Lateral Movement Prevention| ✅ Active| Microsegmentation blocks unauthorized access
-High Availability | ✅ Configured| 3-second NAT failover
+<img width="1302" height="398" alt="image" src="https://github.com/user-attachments/assets/7aee7309-555c-46d9-a511-009b5678d009" />
 
 💼 Quantified Results
 
@@ -89,8 +85,10 @@ High Availability | ✅ Configured| 3-second NAT failover
 🎯 50% reduction in security group complexity
 
 🛠️ Implementation Code
+
 Terraform VPC Configuration
-hclresource "aws_vpc" "main" {
+
+resource "aws_vpc" "main" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
   enable_dns_support   = true
@@ -115,12 +113,13 @@ resource "aws_subnet" "public" {
   }
 }
 📚 Key Learnings
+
 What Worked Well
 
-Planning subnet CIDRs first prevented redesign
-Security groups before apps ensured clean deployment
-Consistent naming reduced operational complexity
-Comprehensive testing caught issues early
+- Planning subnet CIDRs first prevented redesign
+- Security groups before apps ensured clean deployment
+- Consistent naming reduced operational complexity
+- Comprehensive testing caught issues early
 
 Future Enhancements
 
@@ -130,18 +129,19 @@ Future Enhancements
  VPN Gateway for hybrid connectivity
 
 🚀 Business Value
+
 Immediate Impact
 
-Compliance Ready: Aligned with zero-trust requirements
-Audit Friendly: Clear security boundaries documented
-Operational Efficiency: Automated security management
-Cost Optimized: Right-sized NAT deployment
+- Compliance Ready: Aligned with zero-trust requirements
+- Audit Friendly: Clear security boundaries documented
+- Operational Efficiency: Automated security management
+- Cost Optimized: Right-sized NAT deployment
 
 Strategic Benefits
 
-Scalable Foundation: Supports future growth
-Risk Reduction: Significant attack surface reduction
-Enterprise Ready: Meets security standards
+- Scalable Foundation: Supports future growth
+- Risk Reduction: Significant attack surface reduction
+- Enterprise Ready: Meets security standards
 
 
 Project Duration: July 30 – August 1, 2025
