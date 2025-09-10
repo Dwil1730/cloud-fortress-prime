@@ -38,14 +38,14 @@ VPC: 10.0.0.0/16
 
 Security Groups Architecture
 
- Web Tier SG:
-    - Inbound: HTTPS (443) from Internet
-    - Inbound: HTTP (80) from ALB
-    - Outbound: App ports to App Tier only
-App Tier SG
-    - Inbound: App ports from Web Tier only
-    - Outbound: DB ports to DB Tier only
-    - Outbound: HTTPS to internet via NAT
-DB Tier SG
-     - Inbound: DB ports from App Tier only
-     - Outbound: None (isolated)
+ - Web Tier SG:
+   - Inbound: HTTPS (443) from Internet
+   - Inbound: HTTP (80) from ALB
+   - Outbound: App ports to App Tier only
+- App Tier SG
+   - Inbound: App ports from Web Tier only
+   - Outbound: DB ports to DB Tier only
+   - Outbound: HTTPS to internet via NAT
+- DB Tier SG
+    - Inbound: DB ports from App Tier only
+    - Outbound: None (isolated)
