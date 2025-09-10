@@ -112,6 +112,7 @@ resource "aws_subnet" "public" {
     Type = "Public"
   }
 }
+
 📚 Key Learnings
 
 What Worked Well
