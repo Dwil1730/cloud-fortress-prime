@@ -79,10 +79,10 @@ High-availability NAT gateway deployment
 
 💼 Quantified Results
 
-🎯 100% isolation between network tiers
-🎯 0 direct internet connections to database
-🎯 3-second NAT gateway failover time
-🎯 50% reduction in security group complexity
+- 🎯 100% isolation between network tiers
+- 🎯 0 direct internet connections to database
+- 🎯 3-second NAT gateway failover time
+- 🎯 50% reduction in security group complexity
 
 🛠️ Implementation Code
 
