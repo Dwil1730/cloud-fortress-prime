@@ -1,8 +1,8 @@
 # Cloud Fortress Prime — Enterprise Cloud Security & AI-Driven Architecture Initiative 🚀
 
-*Organization:** U.S. Department of Veterans Affairs (VA)  
-**Duration:** July 28 – August 12, 2025 (resumed August 19, 2025)  
-**Scope:** Design, implement, and validate a secure, automated AWS cloud environment integrating **enterprise firewalls, AI/ML monitoring, DLP, and CI/CD automation**.
+Organization: U.S. Department of Veterans Affairs (VA)  
+Duration: July 28 – August 12, 2025 (resumed August 19, 2025)  
+Scope: Design, implement, and validate a secure, automated AWS cloud environment integrating enterprise firewalls, AI/ML monitoring, DLP, and CI/CD automation.
 
 [ Status: Work In Progress](https://img.shields.io/badge/status-WIP-yellow)
 
