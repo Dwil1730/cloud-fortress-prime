@@ -5,11 +5,6 @@
 **Duration:** July 28 – August 12, 2025 (resumed August 19, 2025)  
 **Scope:** Design, implement, and validate a secure, automated AWS cloud environment integrating **enterprise firewalls, AI/ML monitoring, DLP, and CI/CD automation**.
 
-  -- 
-📊 [Architecture  Diagram (WIP)] 
-<img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" />
-
-
 ## **Mission**
 Cloud Fortress Prime delivers a **fully architected, enterprise-grade AWS cloud environment** integrating:
 
