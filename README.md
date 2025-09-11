@@ -1,6 +1,6 @@
-Cloud Fortress Prime — Enterprise AWS  Cloud & Security Architecture 🚀
+Cloud Fortress Prime — Enterprise Cloud Security & AI-Driven Architecture Initiative 🚀
 
-Senior Cloud Security Architecture Deliverable (In-Progress)
+Senior Cloud Security Architecture Deliverable (In-Progress) 
 
 Cloud Fortress Prime is an enterprise-grade AWS environment demonstrating best practices in cloud architecture, automation, and security. It integrates centralized SIEM, automated response workflows, AI/ML-driven threat detection, and compliance alignment (GDPR, HIPAA, SOC 2) in a hands-on, enterprise-ready build.
 
