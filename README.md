@@ -1,12 +1,16 @@
 # Cloud Fortress Prime — Enterprise Cloud Security & AI-Driven Architecture Initiative 🚀
-[ Status: Work In Progress](https://img.shields.io/badge/status-WIP-yellow)
 
-**Organization:** U.S. Department of Veterans Affairs (VA)  
+*Organization:** U.S. Department of Veterans Affairs (VA)  
 **Duration:** July 28 – August 12, 2025 (resumed August 19, 2025)  
 **Scope:** Design, implement, and validate a secure, automated AWS cloud environment integrating **enterprise firewalls, AI/ML monitoring, DLP, and CI/CD automation**.
 
-## **Mission**
-Cloud Fortress Prime delivers a **fully architected, enterprise-grade AWS cloud environment** integrating:
+[ Status: Work In Progress](https://img.shields.io/badge/status-WIP-yellow)
+
+## Executive Summary
+Cloud Fortress Prime is an initiative aimed at fortifying the U.S. Department of Veterans Affairs' cloud infrastructure by integrating advanced security measures, ensuring compliance with federal standards, and enhancing operational resilience.
+
+## Mission
+Deliver a fully architected, enterprise-grade AWS cloud environment integrating:
 
 - Palo Alto NGFW for perimeter security  
 - Netskope-style DLP for sensitive data protection  
@@ -15,8 +19,6 @@ Cloud Fortress Prime delivers a **fully architected, enterprise-grade AWS cloud 
 - Compliance alignment (HIPAA, SOC 2, GDPR)  
 
 The initiative demonstrates **scalable, secure, auditable cloud deployments** aligned with VA IT security and operational objectives.
-
----
 
 ## Project Progress
 
@@ -45,7 +47,7 @@ The initiative demonstrates **scalable, secure, auditable cloud deployments** al
 
 ---
 
-## Current Focus**
+## Current Focus
 **Phase 4 – Security Services (Part 1)**  
 
 - Audit logging via **CloudTrail**  
@@ -61,16 +63,9 @@ The initiative demonstrates **scalable, secure, auditable cloud deployments** al
 3. Conduct **SOAR testing and incident simulations**  
 4. Finalize **architecture diagrams, documentation, and executive demo**
 
----
-
 ## Architecture Overview
 
-Core Flow:
-
-📊 [Architecture  Diagram (WIP)] 
-<img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" />
-
-**Flow Description:**  
+**Core Flow:**
 
 Inbound Traffic → Palo Alto NGFW → ALB → EC2 → CloudTrail/GuardDuty → Macie → Security Hub → EventBridge/Lambda → Falcon SIEM → Audit Dashboard
 
@@ -81,4 +76,6 @@ Inbound Traffic → Palo Alto NGFW → ALB → EC2 → CloudTrail/GuardDuty → 
 4. **Sensitive Data → Macie → Security Hub:** classification & centralized findings  
 5. **Incidents → EventBridge → Lambda:** automated SOAR responses  
 
+📊 [Architecture  Diagram (WIP)]
+<img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" />
 
