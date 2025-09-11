@@ -1,17 +1,11 @@
-Cloud Fortress Prime — Enterprise Cloud Security & AI-Driven Architecture Initiative 🚀
+# Cloud Fortress Prime — Enterprise Cloud Security & AI-Driven Architecture Initiative 🚀
 
-Senior Cloud Security Architecture Deliverable (In-Progress) 
+*Organization:** U.S. Department of Veterans Affairs (VA)  
+**Duration:** July 28 – August 12, 2025 (resumed August 19, 2025)  
+**Scope:** Design, implement, and validate a secure, automated AWS cloud environment integrating **enterprise firewalls, AI/ML monitoring, DLP, and CI/CD automation**.
 
-Cloud Fortress Prime is an enterprise-grade AWS environment demonstrating best practices in cloud architecture, automation, and security. It integrates centralized SIEM, automated response workflows, AI/ML-driven threat detection, and compliance alignment (GDPR, HIPAA, SOC 2) in a hands-on, enterprise-ready build.
-
-Executive Snapshot:
-
-- Current Focus: Perimeter & firewall implementation (Palo Alto + VPC/provisioning)
-
-- Planned Enhancements: Multi-tier EC2 deployment, DLP & sensitive data classification (Macie), automated SOAR workflows (EventBridge + Lambda), Falcon SIEM ingestion, AI/ML anomaly detection & predictive threat modeling.
-- Key Outcomes: Demonstrates scalable cloud deployment, automated monitoring, security best practices, and audit-ready compliance reporting
   
-📊 Architecture  at a Glance 
+📊 [Architecture  Diagram (WIP)] 
 <img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" />
 
 Core Flow:
