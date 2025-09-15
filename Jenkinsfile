@@ -24,21 +24,21 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'docker run --rm ${DOCKER_IMAGE} pytest'
+                sh "docker run --rm ${DOCKER_IMAGE} pytest"
             }
         }
 
         stage('Security Scan (Trivy)') {
             when { expression { fileExists('Dockerfile') } }
             steps {
-                sh 'trivy image ${DOCKER_IMAGE}'
+                sh "trivy image ${DOCKER_IMAGE}"
             }
         }
 
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([ credentialsId: "${env.DOCKER_CREDENTIALS}", url: '' ]) {
-                    sh "docker push ${env.DOCKER_IMAGE}"
+                    sh "docker push ${DOCKER_IMAGE}"
                 }
             }
         }
@@ -50,11 +50,27 @@ pipeline {
         }
 
         stage('Manual Approval for Production') {
-            steps {
+            steps { 
                 input message: 'Deploy to Production?'
             }
         }
 
         stage('Deploy to Production') {
             steps {
-// @ something
+                sh 'docker-compose -f docker-compose.prod.yml up -d'
+            }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker system prune -f'
+        }
+        success {
+            echo "Deployment successful!"
+        }
+        failure {
+            echo "Deployment failed!"
+        }
+    }
+}
