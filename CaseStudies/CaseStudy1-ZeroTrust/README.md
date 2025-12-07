@@ -1,5 +1,8 @@
 # Case Study 1: Zero-Trust Network Architecture Implementation
 
+**Full Terraform Code**: https://github.com/Dwil1730/cloud-fortress-prime/tree/main/terraform  
+**Live Demo**: Destroyed (cost control), 100% reproducible via IaC
+
 Architecture Overview
 <img width="1224" height="1152" alt="image" src="https://github.com/user-attachments/assets/016f5146-d6a9-46e8-9c44-b0ad448a3c2c" />
 
@@ -16,12 +19,25 @@ Architecture Overview
 
  🎯 Business Challenge
 
+**Context**: Migrated EHRM workload from flat VA network to Zero Trust VPC for PHI compliance.
+
 Modern enterprise applications face significant security challenges:
+
 
 - Lateral Movement Risk: Flat networks enable attackers to move freely between systems
 - Attack Surface Exposure: Unrestricted internet access increases vulnerability
 - Compliance Gaps: Manual security group management creates audit findings
 - Scalability Constraints: Legacy architectures don't scale with business growth
+### Threat Model & Validation
+
+| Threat | Control | Proof from Screenshots |
+|--------|---------|-----------------------|
+| Lateral Movement | Tiered SGs | Security Groups → **App only reaches Web, DB only App** |
+| Data Exfiltration | NAT egress only | Route Tables → **DB subnets: 0.0.0.0/0 absent** |
+| Reconnaissance | Least-privilege SGs | Inbound rules → **Only required ports open** |
+| Failover | HA NAT | NAT Gateways → **2x AZ deployment** |
+
+**Audit Results**: 100% tier isolation via console verification.
 
  🏗️ Technical Architecture
  Network Design
@@ -114,6 +130,15 @@ resource "aws_subnet" "public" {
   }
 }
 
+### Cost Optimization
+
+| Component | Monthly Cost | Optimization |
+|-----------|--------------|--------------|
+| NAT Gateways (2 AZ) | $0.045/hr x2 | HA without overprovisioning |
+| VPC | Free | Native AWS service |
+| Security Groups | Free | Native AWS service |
+| **Total** | **~$65/mo** | vs $200+ legacy VPN |
+
 📚 Key Learnings
 
 What Worked Well
@@ -122,6 +147,22 @@ What Worked Well
 - Security groups before apps ensured clean deployment
 - Consistent naming reduced operational complexity
 - Comprehensive testing caught issues early
+
+### 🧪 Zero Trust Validation Pipeline **LIVE ✅**
+
+![Zero Trust Pipeline Results](https://github.com/user-attachments/assets/b57f1977-43e9-4287-9642-38cbd7eb0ab4)
+
+
+
+**Results Table**:
+| Check | Status | Time |
+|-------|--------|------|
+| SG Isolation | ✅ PASS | 8s |
+| Route Tables | ✅ PASS | 7s |
+| Port Scanning | ✅ PASS | 7s |
+| IAM Policies | ✅ PASS | 6s |
+| **Total** | **100%** | **28s** |
+
 
 Future Enhancements
 
@@ -147,6 +188,7 @@ Strategic Benefits
 
 ◻️ Enterprise Ready: Meets security standards
 
+**🔗 Full Code & Reproduce**: https://github.com/Dwil1730/cloud-fortress-prime/tree/main/terraform
 
 - Project Duration: July 30 – August 1, 2025
 - Status: ✅  Production Ready
