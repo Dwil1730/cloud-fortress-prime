@@ -19,6 +19,22 @@ Architecture Overview
 | Timeline | 3 days (July 30 – August 1, 2025) |
 | Impact | 100% tier isolation, reduced attack surface, compliance-ready architecture |
 
+## 🔒 Checkov IaC Validation
+**Checkov v3.2.495: 10/13 PASSED (77%)**
+
+| Check | Status | Fix |
+|-------|--------|-----|
+| CKV_AWS_23 | ✅ PASS | Rule descriptions |
+| CKV2_AWS_5 | ✅ PASS | NIC attachments |
+| CKV_AWS_382 | ❌ FAIL | Restrict egress (roadmap) |
+| CKV2_AWS_12 | ❌ FAIL | Default SG lockdown (roadmap) |
+
+
+**Cost Optimization**  
+| Component | Monthly Cost | Optimization |
+|-----------|--------------|--------------|
+| NAT Gateways | $0.045/hr x2 | HA deployment |
+| **Total** | **~$65/mo** | vs $200+ VPN |
 
 
  🎯 Business Challenge
@@ -32,14 +48,15 @@ Modern enterprise applications face significant security challenges:
 - Attack Surface Exposure: Unrestricted internet access increases vulnerability
 - Compliance Gaps: Manual security group management creates audit findings
 - Scalability Constraints: Legacy architectures don't scale with business growth
-### Threat Model & Validation
 
+### Threat Model & Validation
 | Threat | Control | Proof from Screenshots |
 |--------|---------|-----------------------|
-| Lateral Movement | Tiered SGs | Security Groups → **App only reaches Web, DB only App** |
-| Data Exfiltration | NAT egress only | Route Tables → **DB subnets: 0.0.0.0/0 absent** |
-| Reconnaissance | Least-privilege SGs | Inbound rules → **Only required ports open** |
-| Failover | HA NAT | NAT Gateways → **2x AZ deployment** |
+| Lateral Movement | Tiered SGs | Security Groups → App only reaches Web, DB only App |
+| Data Exfiltration | NAT egress only | Route Tables → DB subnets: 0.0.0.0/0 absent |
+| Reconnaissance | Least-privilege SGs | Inbound rules → Only required ports open |
+| Failover | HA NAT | NAT Gateways → 2x AZ deployment |
+
 
 **Audit Results**: 100% tier isolation via console verification.
 ## 🔒 Checkov IaC Validation
@@ -145,7 +162,6 @@ resource "aws_subnet" "public" {
 }
 
 ### Cost Optimization
-
 | Component | Monthly Cost | Optimization |
 |-----------|--------------|--------------|
 | NAT Gateways (2 AZ) | $0.045/hr x2 | HA without overprovisioning |
@@ -176,6 +192,7 @@ What Worked Well
 | Port Scanning | ✅ PASS | 7s |
 | IAM Policies | ✅ PASS | 6s |
 | **Total** | **100%** | **28s** |
+
 
 
 Future Enhancements
