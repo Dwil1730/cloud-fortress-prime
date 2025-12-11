@@ -1,6 +1,7 @@
 # Case Study 1: Zero-Trust Network Architecture Implementation
 
-**Full Terraform Code**: https://github.com/Dwil1730/cloud-fortress-prime/tree/main/terraform  
+Full Terraform Code: Demo only (Production IaC patterns in README)
+
 **Live Demo**: Destroyed (cost control), 100% reproducible via IaC
 
 Architecture Overview
@@ -38,8 +39,18 @@ Modern enterprise applications face significant security challenges:
 | Failover | HA NAT | NAT Gateways → **2x AZ deployment** |
 
 **Audit Results**: 100% tier isolation via console verification.
+## 🔒 Checkov IaC Validation
+**Checkov v3.2.495: 10/13 PASSED (77%)**
+
+| Check | Status | Fix |
+|-------|--------|-----|
+| CKV_AWS_23 | ✅ PASS | Rule descriptions |
+| CKV2_AWS_5 | ✅ PASS | NIC attachments |
+| CKV_AWS_382 | ❌ FAIL | Restrict egress (roadmap) |
+| CKV2_AWS_12 | ❌ FAIL | Default SG lockdown (roadmap) |
 
  🏗️ Technical Architecture
+
  Network Design
  
 VPC: 10.0.0.0/16
