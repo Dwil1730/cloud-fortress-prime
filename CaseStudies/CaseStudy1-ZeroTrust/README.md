@@ -58,16 +58,6 @@ Modern enterprise applications face significant security challenges:
 | Failover | HA NAT | NAT Gateways → 2x AZ deployment |
 
 
-**Audit Results**: 100% tier isolation via console verification.
-## 🔒 Checkov IaC Validation
-**Checkov v3.2.495: 10/13 PASSED (77%)**
-
-| Check | Status | Fix |
-|-------|--------|-----|
-| CKV_AWS_23 | ✅ PASS | Rule descriptions |
-| CKV2_AWS_5 | ✅ PASS | NIC attachments |
-| CKV_AWS_382 | ❌ FAIL | Restrict egress (roadmap) |
-| CKV2_AWS_12 | ❌ FAIL | Default SG lockdown (roadmap) |
 
  🏗️ Technical Architecture
 
