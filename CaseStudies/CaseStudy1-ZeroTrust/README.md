@@ -9,9 +9,9 @@ Architecture Overview
 
 
 
-## 👑 PRINCIPAL CLOUD ARCHITECT VALIDATED
+
 **VA EHRM Zero Trust VPC** | 3-day delivery | PHI compliant | Checkov 10/13 PASS
-## 📋 Executive Summary
+## Executive Summary
 | Aspect | Details |
 |--------|---------|
 | Challenge | Secure multi-tier network with zero-trust principles |
@@ -19,15 +19,15 @@ Architecture Overview
 | Timeline | 3 days (July 30 – August 1, 2025) |
 | Impact | 100% tier isolation, reduced attack surface, compliance-ready architecture |
 
-## 🔒 Checkov IaC Validation
+## Checkov IaC Validation
 **Checkov v3.2.495: 10/13 PASSED (77%)**
 
 | Check | Status | Fix |
 |-------|--------|-----|
-| CKV_AWS_23 | ✅ PASS | Rule descriptions |
-| CKV2_AWS_5 | ✅ PASS | NIC attachments |
-| CKV_AWS_382 | ❌ FAIL | Restrict egress (roadmap) |
-| CKV2_AWS_12 | ❌ FAIL | Default SG lockdown (roadmap) |
+| CKV_AWS_23 | PASS | Rule descriptions |
+| CKV2_AWS_5 | PASS | NIC attachments |
+| CKV_AWS_382 | FAIL | Restrict egress (roadmap) |
+| CKV2_AWS_12 | FAIL | Default SG lockdown (roadmap) |
 
 
 **Cost Optimization**  
@@ -37,7 +37,7 @@ Architecture Overview
 | **Total** | **~$65/mo** | vs $200+ VPN |
 
 
- 🎯 Business Challenge
+  Business Challenge
 
 **Context**: Migrated EHRM workload from flat VA network to Zero Trust VPC for PHI compliance.
 
@@ -59,7 +59,7 @@ Modern enterprise applications face significant security challenges:
 
 
 
- 🏗️ Technical Architecture
+  Technical Architecture
 
  Network Design
  
@@ -88,7 +88,7 @@ Security Groups Architecture
     - Inbound: DB ports from App Tier only
     - Outbound: None (isolated)
     - 
-📊 Screenshots
+Screenshots
 
 VPC Architecture
 <img width="1435" height="686" alt="VPC _Dashboard" src="https://github.com/user-attachments/assets/13f3f261-f026-474a-89e9-a478bcbf1b31" />
@@ -111,18 +111,18 @@ Controlled internet access through NAT gateways
 
 High-availability NAT gateway deployment
 
-🔒 Security Outcomes
+ Security Outcomes
 
 <img width="1302" height="398" alt="image" src="https://github.com/user-attachments/assets/7aee7309-555c-46d9-a511-009b5678d009" />
 
-💼 Quantified Results
+ Quantified Results
 
-- 🎯 100% isolation between network tiers
-- 🎯 0 direct internet connections to database
-- 🎯 3-second NAT gateway failover time
-- 🎯 50% reduction in security group complexity
+-  100% isolation between network tiers
+-  0 direct internet connections to database
+-  3-second NAT gateway failover time
+-  50% reduction in security group complexity
 
-🛠️ Implementation Code
+ Implementation Code
 
 Terraform VPC Configuration
 
@@ -159,7 +159,7 @@ resource "aws_subnet" "public" {
 | Security Groups | Free | Native AWS service |
 | **Total** | **~$65/mo** | vs $200+ legacy VPN |
 
-📚 Key Learnings
+ Key Learnings
 
 What Worked Well
 
@@ -168,7 +168,7 @@ What Worked Well
 - Consistent naming reduced operational complexity
 - Comprehensive testing caught issues early
 
-### 🧪 Zero Trust Validation Pipeline **LIVE ✅**
+###  Zero Trust Validation Pipeline **LIVE **
 
 ![Zero Trust Pipeline Results](https://github.com/user-attachments/assets/b57f1977-43e9-4287-9642-38cbd7eb0ab4)
 
@@ -177,10 +177,10 @@ What Worked Well
 **Results Table**:
 | Check | Status | Time |
 |-------|--------|------|
-| SG Isolation | ✅ PASS | 8s |
-| Route Tables | ✅ PASS | 7s |
-| Port Scanning | ✅ PASS | 7s |
-| IAM Policies | ✅ PASS | 6s |
+| SG Isolation |  PASS | 8s |
+| Route Tables |  PASS | 7s |
+| Port Scanning |  PASS | 7s |
+| IAM Policies |  PASS | 6s |
 | **Total** | **100%** | **28s** |
 
 
@@ -192,7 +192,7 @@ Future Enhancements
  - Network ACLs for additional security layer
  - VPN Gateway for hybrid connectivity
 
-🚀 Business Value
+ Business Value
 
 Immediate Impact
 
@@ -209,8 +209,8 @@ Strategic Benefits
 
 ◻️ Enterprise Ready: Meets security standards
 
-**🔗 Full Code**: Production IaC patterns + validation above ✅
+** Full Code**: Production IaC patterns + validation above 
 
 - Project Duration: July 30 – August 1, 2025
-- Status: ✅  Production Ready
+- Status:   Production Ready
 - Next: Infrastructure as Code automation
