@@ -6,12 +6,20 @@
 ## Why I built this
 I worked on cloud and infrastructure security for the VA EHRM project. One of the recurring issues we had was a flat network for PHI data that was too manual to manage: editing security groups by hand, figuring out where the paths to the internet were, and proving network isolation for audits was painful. This project pulls together a Zero Trust VPC design I used there, but I rebuilt it in my own account using Terraform so I could get hands-on practice turning the network into code and have something concrete I could discuss and share.
 
+## Context and constraints
+
+This design assumes PHI and other sensitive data lives in the app and database tiers, so the goal was to keep that traffic off the public internet and make east–west access very explicit. I treated the VPC as one “security zone” inside a larger VA-style environment, not the whole system.  
+
+I also set a soft cost ceiling for this demo. I wanted the design to look like something you’d actually run in a real environment (HA NAT, multiple AZs), but I didn’t want a big monthly bill sitting around, which is why everything is built with Terraform and destroyed when I’m done.  
+
+
 ## What this project does
 
-- Builds a multi-tier VPC in AWS (web, app, data) spread across two AZs for extra reliability.  
-- Enforces strict traffic flows using security groups: web can only talk to app, app can only talk to db, with no direct internet access from the db tier.  
-- Sends all outbound traffic from the private tiers through HA NAT gateways to keep egress controlled.  
-- Runs Checkov against the Terraform and a small pipeline to catch misconfigurations (like accidentally allowing 0.0.0.0/0) before applying the changes. The project files are kept so this environment can be easily rebuilt.
+- Implements a three-tier VPC pattern (web, app, data) that matches how a typical VA EHRM-style system might be segmented in AWS, not just a toy lab.  
+- Uses security groups and route tables to make trust boundaries obvious: internet → web only, web → app only, app → db only, and no path from db to the public internet.  
+- Adds high-availability NAT gateways so private workloads can reach the internet when needed (patching, updates, APIs) without ever exposing database subnets directly.  
+- Bakes the design into Terraform so the same pattern could be rolled out consistently across multiple accounts or environments instead of being a one-off console build.  
+
 
 ## Issues I ran into
 
@@ -51,7 +59,7 @@ VPC: 10.0.0.0/16
 - DB Tier SG
     - Inbound: DB ports from App Tier only
     - Outbound: None (isolated)
-    - 
+      
 ### Screenshots
 
 VPC Architecture
@@ -96,18 +104,32 @@ All connectivity tests passed.
 Running this setup costs about $65/month for the two NAT gateways ($0.045/hour each). Everything else (VPC, subnets, security groups, route tables) is free. For this demo, I destroyed everything to avoid the monthly cost, but the Terraform code makes it easy to spin back up in about 10 minutes. 
 
 ## Code structure
-
 terraform/
+
 ├── main.tf # Provider configuration
+
 ├── vpc.tf # VPC and subnets
+
 ├── security-groups.tf # All security group rules
+
 ├── nat-gateways.tf # NAT gateway and EIP setup
+
 ├── route-tables.tf # Routing configuration
+
 ├── variables.tf # Input variables
+
 └── outputs.tf # Output values
 
 
-The Terraform is straightforward—no fancy modules yet, just basic resource definitions. I kept it simple because I wanted to understand exactly what each resource does before abstracting things into modules. 
+The Terraform is straightforward—no fancy modules yet, just basic resource definitions. I kept it simple because I wanted to understand exactly what each resource does before abstracting things into modules.
+
+## Architectural tradeoffs and extensions
+
+For this project, I kept everything in a single account to focus on the network and security group model. In a real VA-style environment, I would split this into multiple accounts (shared services, app, logging) behind AWS Organizations and SCPs, and reuse this VPC pattern as a building block.  
+
+I chose NAT gateways over simple internet gateways on private subnets because it matches how most shops actually handle outbound traffic today: controlled egress with the option to add egress controls (proxy, TLS inspection) later. The tradeoff is cost, which is why I call it out in the cost section.  
+
+Logging is intentionally light here (no full-blown Security Lake or SIEM wiring) to keep the scope manageable. The next step would be VPC Flow Logs, CloudTrail, and GuardDuty feeding into a central account so this Zero-Trust VPC is part of a broader detection and response story, not just an isolated network diagram.  
 
 ## What I learned
 
@@ -115,4 +137,6 @@ The Terraform is straightforward—no fancy modules yet, just basic resource def
 - Route tables need careful review: I thought I had the database tier isolated, but I'd accidentally left a route to the internet gateway in one of the route table associations. Only caught it when I went through the Terraform line by line.  
 - Testing is essential: I initially thought "it's just networking, if it deploys it works." I had to actually test connectivity between tiers to make sure the security groups were doing what I thought they were doing. 
 - High availability costs money: two NAT gateways double the cost compared to one, but it's worth it to avoid having a single point of failure. In a real production environment, the extra cost is small compared to downtime. 
-- IaC makes iteration faster: once I had the basic Terraform working, it was much faster to make changes, destroy, and rebuild than clicking through the console. Plus I have a record of exactly what I built. 
+- IaC makes iteration faster: once I had the basic Terraform working, it was much faster to make changes, destroy, and rebuild than clicking through the console. Plus I have a record of exactly what I built.
+- From a Zero-Trust perspective, this is one slice of the bigger picture: strong network segmentation, explicit allowed paths, and good defaults (no 0.0.0.0/0, no db → internet). It doesn’t replace identity, device, or data controls, but it gives me a concrete, reproducible network layer that I can plug those other pieces into.  
+
