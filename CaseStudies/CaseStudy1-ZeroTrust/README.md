@@ -1,67 +1,31 @@
-# Case Study 1: Zero-Trust Network Architecture Implementation
+# Case Study 1: Zero-Trust Network Architecture for VA EHRM
 
-Full Terraform Code: Demo only (Production IaC patterns in README)
+**Timeline**: 3 days (July 30 – August 1, 2025)
+**Status**: Destroyed (cost control), fully reproducible via Terraform
+**Code**: [terraform/](./terraform/)
+## Why I built this
+I worked on cloud and infrastructure security for the VA EHRM project. One of the recurring issues we had was a flat network for PHI data that was too manual to manage: editing security groups by hand, figuring out where the paths to the internet were, and proving network isolation for audits was painful. This project pulls together a Zero Trust VPC design I used there, but I rebuilt it in my own account using Terraform so I could get hands-on practice turning the network into code and have something concrete I could discuss and share.
 
-**Live Demo**: Destroyed (cost control), 100% reproducible via IaC
+## What this project does
 
-Architecture Overview
-<img width="1224" height="1152" alt="image" src="https://github.com/user-attachments/assets/016f5146-d6a9-46e8-9c44-b0ad448a3c2c" />
+- Builds a multi-tier VPC in AWS (web, app, data) spread across two AZs for extra reliability.  
+- Enforces strict traffic flows using security groups: web can only talk to app, app can only talk to db, with no direct internet access from the db tier.  
+- Sends all outbound traffic from the private tiers through HA NAT gateways to keep egress controlled.  
+- Runs Checkov against the Terraform and a small pipeline to catch misconfigurations (like accidentally allowing 0.0.0.0/0) before applying the changes. The project files are kept so this environment can be easily rebuilt.
 
+## Issues I ran into
 
+- It took a few tries to get the security group rules right. Early versions were either too open (I didn’t notice I had 0.0.0.0/0 in some places) or too restrictive and broke traffic between web, app, and db.  
+- I initially left a back door to the internet from the database subnets through a route I missed the first time around. That forced me to go back through each route table and double-check that the db tier had no internet paths.  
+- I started out configuring everything in the AWS console, made small mistakes, and got frustrated. Moving the design into Terraform, plus Checkov and a validation script, made it much easier to see and repeat the configuration.
 
+## What I’d do differently next time
 
-**VA EHRM Zero Trust VPC** | 3-day delivery | PHI compliant | Checkov 10/13 PASS
-## Executive Summary
-| Aspect | Details |
-|--------|---------|
-| Challenge | Secure multi-tier network with zero-trust principles |
-| Solution | Multi-tier VPC, microsegmentation, high-availability NAT gateways |
-| Timeline | 3 days (July 30 – August 1, 2025) |
-| Impact | 100% tier isolation, reduced attack surface, compliance-ready architecture |
+- Plan for multi-account and logging from the start instead of trying to bolt them on afterwards.  
+- Add VPC Flow Logs and a basic check for unusual patterns in those logs as part of the initial design.  
+- Use Terraform modules from the beginning, with separate folders for dev, test, and prod, instead of refactoring later.
 
-## Checkov IaC Validation
-**Checkov v3.2.495: 10/13 PASSED (77%)**
-
-| Check | Status | Fix |
-|-------|--------|-----|
-| CKV_AWS_23 | PASS | Rule descriptions |
-| CKV2_AWS_5 | PASS | NIC attachments |
-| CKV_AWS_382 | FAIL | Restrict egress (roadmap) |
-| CKV2_AWS_12 | FAIL | Default SG lockdown (roadmap) |
-
-
-**Cost Optimization**  
-| Component | Monthly Cost | Optimization |
-|-----------|--------------|--------------|
-| NAT Gateways | $0.045/hr x2 | HA deployment |
-| **Total** | **~$65/mo** | vs $200+ VPN |
-
-
-  Business Challenge
-
-**Context**: Migrated EHRM workload from flat VA network to Zero Trust VPC for PHI compliance.
-
-Modern enterprise applications face significant security challenges:
-
-
-- Lateral Movement Risk: Flat networks enable attackers to move freely between systems
-- Attack Surface Exposure: Unrestricted internet access increases vulnerability
-- Compliance Gaps: Manual security group management creates audit findings
-- Scalability Constraints: Legacy architectures don't scale with business growth
-
-### Threat Model & Validation
-| Threat | Control | Proof from Screenshots |
-|--------|---------|-----------------------|
-| Lateral Movement | Tiered SGs | Security Groups → App only reaches Web, DB only App |
-| Data Exfiltration | NAT egress only | Route Tables → DB subnets: 0.0.0.0/0 absent |
-| Reconnaissance | Least-privilege SGs | Inbound rules → Only required ports open |
-| Failover | HA NAT | NAT Gateways → 2x AZ deployment |
-
-
-
-  Technical Architecture
-
- Network Design
+## Network Design
  
 VPC: 10.0.0.0/16
 - Public Subnets (Web Tier)
@@ -74,7 +38,7 @@ VPC: 10.0.0.0/16
     - 10.0.100.0/24 (AZ-1a)
     - 10.0.200.0/24 (AZ-1b)
 
-Security Groups Architecture
+## Security Groups Architecture
 
  - Web Tier SG:
    - Inbound: HTTPS (443) from Internet
@@ -88,7 +52,7 @@ Security Groups Architecture
     - Inbound: DB ports from App Tier only
     - Outbound: None (isolated)
     - 
-Screenshots
+### Screenshots
 
 VPC Architecture
 <img width="1435" height="686" alt="VPC _Dashboard" src="https://github.com/user-attachments/assets/13f3f261-f026-474a-89e9-a478bcbf1b31" />
@@ -111,106 +75,44 @@ Controlled internet access through NAT gateways
 
 High-availability NAT gateway deployment
 
- Security Outcomes
+## Validation
 
-<img width="1302" height="398" alt="image" src="https://github.com/user-attachments/assets/7aee7309-555c-46d9-a511-009b5678d009" />
+I ran Checkov on the Terraform code. Got 10/13 checks passing (77%). The three failures are:   
 
- Quantified Results
+- CKV_AWS_382: Overly permissive egress rules (on roadmap to lock down further).  
+- CKV2_AWS_12: Default security group not locked down (on roadmap).  
+- CKV_AWS_23: Missing some security group rule descriptions.  
 
--  100% isolation between network tiers
--  0 direct internet connections to database
--  3-second NAT gateway failover time
--  50% reduction in security group complexity
+I also wrote a validation script that tests: 
 
- Implementation Code
+- Web tier can reach app tier.  
+- App tier can reach database tier.  
+- Database tier cannot reach internet.  
+- No cross-tier access (web cannot directly reach database).  
 
-Terraform VPC Configuration
+All connectivity tests passed. 
+## Cost
 
-resource "aws_vpc" "main" {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_hostnames = true
-  enable_dns_support   = true
-  
-  tags = {
-    Name        = "zero-trust-vpc"
-    Environment = "production"
-    Project     = "zero-trust-architecture"
-  }
-}
+Running this setup costs about $65/month for the two NAT gateways ($0.045/hour each). Everything else (VPC, subnets, security groups, route tables) is free. For this demo, I destroyed everything to avoid the monthly cost, but the Terraform code makes it easy to spin back up in about 10 minutes. 
 
-resource "aws_subnet" "public" {
-  count                   = 2
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.${count.index + 1}.0/24"
-  availability_zone       = data.aws_availability_zones.available.names[count.index]
-  map_public_ip_on_launch = true
+## Code structure
 
-  tags = {
-    Name = "public-subnet-${count.index + 1}"
-    Type = "Public"
-  }
-}
-
-### Cost Optimization
-| Component | Monthly Cost | Optimization |
-|-----------|--------------|--------------|
-| NAT Gateways (2 AZ) | $0.045/hr x2 | HA without overprovisioning |
-| VPC | Free | Native AWS service |
-| Security Groups | Free | Native AWS service |
-| **Total** | **~$65/mo** | vs $200+ legacy VPN |
-
- Key Learnings
-
-What Worked Well
-
-- Planning subnet CIDRs first prevented redesign
-- Security groups before apps ensured clean deployment
-- Consistent naming reduced operational complexity
-- Comprehensive testing caught issues early
-
-###  Zero Trust Validation Pipeline **LIVE **
-
-![Zero Trust Pipeline Results](https://github.com/user-attachments/assets/b57f1977-43e9-4287-9642-38cbd7eb0ab4)
+terraform/
+├── main.tf # Provider configuration
+├── vpc.tf # VPC and subnets
+├── security-groups.tf # All security group rules
+├── nat-gateways.tf # NAT gateway and EIP setup
+├── route-tables.tf # Routing configuration
+├── variables.tf # Input variables
+└── outputs.tf # Output values
 
 
+The Terraform is straightforward—no fancy modules yet, just basic resource definitions. I kept it simple because I wanted to understand exactly what each resource does before abstracting things into modules. 
 
-**Results Table**:
-| Check | Status | Time |
-|-------|--------|------|
-| SG Isolation |  PASS | 8s |
-| Route Tables |  PASS | 7s |
-| Port Scanning |  PASS | 7s |
-| IAM Policies |  PASS | 6s |
-| **Total** | **100%** | **28s** |
+## What I learned
 
-
-
-Future Enhancements
-
- - VPC Flow Logs for traffic monitoring
- - Transit Gateway for multi-VPC connectivity
- - Network ACLs for additional security layer
- - VPN Gateway for hybrid connectivity
-
- Business Value
-
-Immediate Impact
-
-- Compliance Ready: Aligned with zero-trust requirements
-- Audit Friendly: Clear security boundaries documented
-- Operational Efficiency: Automated security management
-- Cost Optimized: Right-sized NAT deployment
-
-Strategic Benefits
-
-◻️ Scalable Foundation: Supports future growth
-
-◻️ Risk Reduction: Significant attack surface reduction
-
-◻️ Enterprise Ready: Meets security standards
-
-** Full Code**: Production IaC patterns + validation above 
-
-- Project Duration: July 30 – August 1, 2025
-- Status:   Production Ready
-- Next: Infrastructure as Code automation
+- Security groups are easy to mess up: when you're clicking through the AWS console, it's easy to add a rule you didn't mean to or forget to restrict something properly. Having everything in code made it much easier to review and catch mistakes.  
+- Route tables need careful review: I thought I had the database tier isolated, but I'd accidentally left a route to the internet gateway in one of the route table associations. Only caught it when I went through the Terraform line by line.  
+- Testing is essential: I initially thought "it's just networking, if it deploys it works." I had to actually test connectivity between tiers to make sure the security groups were doing what I thought they were doing. 
+- High availability costs money: two NAT gateways double the cost compared to one, but it's worth it to avoid having a single point of failure. In a real production environment, the extra cost is small compared to downtime. 
+- IaC makes iteration faster: once I had the basic Terraform working, it was much faster to make changes, destroy, and rebuild than clicking through the console. Plus I have a record of exactly what I built. 
