@@ -29,9 +29,13 @@ I also set a soft cost ceiling for this demo. I wanted the design to look like s
 
 ## What I’d do differently next time
 
+
 - Plan for multi-account and logging from the start instead of trying to bolt them on afterwards.  
 - Add VPC Flow Logs and a basic check for unusual patterns in those logs as part of the initial design.  
 - Use Terraform modules from the beginning, with separate folders for dev, test, and prod, instead of refactoring later.
+
+**Daily Logs**:
+[DAILY-LOGS.md](./DAILY-LOGS.md)
 
 ## Network Design
  
