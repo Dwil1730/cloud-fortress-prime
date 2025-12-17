@@ -1,4 +1,4 @@
-# Cloud Fortress Prime — Enterprise Cloud Security & AI-Driven Architecture Initiative 🚀
+# Cloud Fortress Prime — Enterprise Cloud Security & AI-Driven Architecture Initiative 
 
 Organization: U.S. Department of Veterans Affairs (VA)  
 Duration: July 28 – August 12, 2025 (resumed August 19, 2025)  
