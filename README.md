@@ -28,7 +28,7 @@ The initiative demonstrates **scalable, secure, auditable cloud deployments** al
 | Phase 1 – Terraform Backend |  Completed | S3 bucket & DynamoDB lock table for Terraform state |
 | Phase 2 – Core Infrastructure (Parts 1 & 2) |  Completed | Multi-tier VPC, public/private subnets, NAT gateways, EC2 instances, ALB, ECR, KMS, Secrets Manager |
 | Phase 3 – Application Deployment & CI/CD |  Completed | Containerized Flask application, Jenkins & GitHub Actions pipelines |
-| **Phase 4 – Security Services (Part 1)** | ⚙ **In Progress** | CloudTrail audit logging, AWS Macie data classification, DLP simulation, compliance mapping |
+| **Phase 4 – Security Services (Part 1)** |  **In Progress** | CloudTrail audit logging, AWS Macie data classification, DLP simulation, compliance mapping |
 | Phase 4 – Security Services (Part 2) |  Planned | GuardDuty, Security Hub, CSPM, automated security playbooks |
 | Phase 4 – Security Services (Part 3) |  Planned | AWS Detective, EventBridge + Lambda, SOAR workflows |
 | Phase 5 – SOAR Testing |  Planned | Incident simulation, workflow validation, automated response testing |
