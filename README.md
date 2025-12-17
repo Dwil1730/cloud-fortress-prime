@@ -24,16 +24,16 @@ The initiative demonstrates **scalable, secure, auditable cloud deployments** al
 
 | Phase | Status | Description |
 |-------|--------|-------------|
-| Phase 0 – Project Setup & AWS Account | ✅ Completed | AWS account, IAM users with MFA, Git repo, local dev environment |
-| Phase 1 – Terraform Backend | ✅ Completed | S3 bucket & DynamoDB lock table for Terraform state |
-| Phase 2 – Core Infrastructure (Parts 1 & 2) | ✅ Completed | Multi-tier VPC, public/private subnets, NAT gateways, EC2 instances, ALB, ECR, KMS, Secrets Manager |
-| Phase 3 – Application Deployment & CI/CD | ✅ Completed | Containerized Flask application, Jenkins & GitHub Actions pipelines |
+| Phase 0 – Project Setup & AWS Account |  Completed | AWS account, IAM users with MFA, Git repo, local dev environment |
+| Phase 1 – Terraform Backend |  Completed | S3 bucket & DynamoDB lock table for Terraform state |
+| Phase 2 – Core Infrastructure (Parts 1 & 2) |  Completed | Multi-tier VPC, public/private subnets, NAT gateways, EC2 instances, ALB, ECR, KMS, Secrets Manager |
+| Phase 3 – Application Deployment & CI/CD |  Completed | Containerized Flask application, Jenkins & GitHub Actions pipelines |
 | **Phase 4 – Security Services (Part 1)** | ⚙ **In Progress** | CloudTrail audit logging, AWS Macie data classification, DLP simulation, compliance mapping |
-| Phase 4 – Security Services (Part 2) | ⏳ Planned | GuardDuty, Security Hub, CSPM, automated security playbooks |
-| Phase 4 – Security Services (Part 3) | ⏳ Planned | AWS Detective, EventBridge + Lambda, SOAR workflows |
-| Phase 5 – SOAR Testing | ⏳ Planned | Incident simulation, workflow validation, automated response testing |
-| Phase 6 – Demo & Documentation | ⏳ Planned | Architecture diagrams, full documentation, demo script |
-| Phase 7 – Project Reflection & Branding | ⏳ Planned | Lessons learned, resume update, career prep |
+| Phase 4 – Security Services (Part 2) |  Planned | GuardDuty, Security Hub, CSPM, automated security playbooks |
+| Phase 4 – Security Services (Part 3) |  Planned | AWS Detective, EventBridge + Lambda, SOAR workflows |
+| Phase 5 – SOAR Testing |  Planned | Incident simulation, workflow validation, automated response testing |
+| Phase 6 – Demo & Documentation |  Planned | Architecture diagrams, full documentation, demo script |
+| Phase 7 – Project Reflection & Branding |  Planned | Lessons learned, resume update, career prep |
 
 ---
 
@@ -76,6 +76,6 @@ Inbound Traffic → Palo Alto NGFW → ALB → EC2 → CloudTrail/GuardDuty → 
 4. **Sensitive Data → Macie → Security Hub:** classification & centralized findings  
 5. **Incidents → EventBridge → Lambda:** automated SOAR responses  
 
-📊 [Architecture  Diagram (WIP)]
+ [Architecture  Diagram (WIP)]
 <img width="2630" height="780" alt="image" src="https://github.com/user-attachments/assets/f70f58b5-c811-46cc-986d-a2ba4bd8fa82" />
 
