@@ -35,7 +35,8 @@ I also set a soft cost ceiling for this demo. I wanted the design to look like s
 - Use Terraform modules from the beginning, with separate folders for dev, test, and prod, instead of refactoring later.
 
 **Daily Logs**:
-[DAILY-LOGS.md](./DAILY-LOGS.md)
+[Daily Logs](./logs/)
+
 
 ## Network Design
  
