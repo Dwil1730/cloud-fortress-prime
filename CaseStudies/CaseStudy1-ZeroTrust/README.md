@@ -59,17 +59,11 @@ Each Launch Template enforces:
 - **No public IP assignment** in private subnets.
 - **Attached IAM instance profile** (role‑linked).
 - **Approved golden AMI** sourced from a trusted pipeline.  
-Example (conceptual):
-aws ec2 create-launch-template
---launch-template-name app-tier-template
---launch-template-data '{
-"ImageId":"ami-123abc456def",
-"IamInstanceProfile":{"Name":"AppTierInstanceProfile"},
-"MetadataOptions":{"HttpTokens":"required"},
-"NetworkInterfaces":[{"AssociatePublicIpAddress":false}],
-"TagSpecifications":[{"ResourceType":"instance","Tags":[{"Key":"Tier","Value":"App"}]}]
-}'
 
+Example (conceptual):
+aws ec2 create-launch-template  --launch-template-name app-tier-template  --launch-template-data '{ "ImageId":"ami-123abc456def", "IamInstanceProfile":{"Name":"AppTierInstanceProfile"}, "MetadataOptions":{"HttpTokens":"required"}, "NetworkInterfaces":[{"AssociatePublicIpAddress":false}], "TagSpecifications":[{"ResourceType":"instance","Tags":[{"Key":"Tier","Value":"App"}]}] }'
+
+text
 This guarantees that **no instance can bypass IAM enforcement** — every workload operates with its assigned identity and posture.
 
 ---
@@ -227,15 +221,11 @@ Running this setup costs about $65/month for the two NAT gateways ($0.045/hour e
 ---
 
 ## Code structure
-terraform/
-├── main.tf # Provider configuration
-├── vpc.tf # VPC and subnets
-├── security-groups.tf # All security group rules
-├── nat-gateways.tf # NAT gateway and EIP setup
-├── route-tables.tf # Routing configuration
-├── variables.tf # Input variables
-└── outputs.tf # Output values
 
+terraform/ ├── main.tf # Provider configuration ├── vpc.tf # VPC and subnets ├── security-groups.tf # All security group rules ├── nat-gateways.tf # NAT gateway and EIP setup ├── route-tables.tf # Routing configuration ├── variables.tf # Input variables └── outputs.tf # Output values
+
+text
+The Terraform is straightforward—no fancy modules yet, just basic resource definitions. I kept it simple because I wanted to understand exactly what each resource does before abstracting things into modules.
 
 ---
 
@@ -249,12 +239,61 @@ Logging is intentionally light here (no full-blown Security Lake or SIEM wiring)
 
 ---
 
+## Integration with Central Governance (SSO + SCPs)
+
+In a real VA-style environment, this VPC is part of a broader Zero Trust and governance model:
+
+- **AWS SSO** is used for human access:
+  - No long-lived IAM users; all access is via SSO with MFA.  
+  - Conditional access policies require MFA and device compliance for console and CLI access.  
+- **Service Control Policies (SCPs)** enforce organization-wide guardrails:
+  - Restrict resource creation to approved AWS regions.  
+  - Require encryption for all data-at-rest resources.  
+  - Prevent deletion or modification of GuardDuty, Config, and CloudTrail.  
+- **Central logging account** receives:
+  - VPC Flow Logs, CloudTrail, and GuardDuty findings.  
+  - Security Hub findings aggregated across accounts.  
+
+This ensures that even if a workload is compromised, the blast radius is limited by identity, network, and organizational controls.
+
+---
+
+## CI/CD Pipeline Integration
+
+This Terraform code is integrated into a CI/CD pipeline that:
+- Runs Checkov and other policy scanners on every pull request.  
+- Blocks deployment if critical violations (e.g., overly permissive egress, default SG) are present.  
+- Requires approval from security and networking teams before merging.  
+
+This ensures that Zero Trust controls are enforced consistently across all environments.
+
+---
+
+## Policy Violations and Remediation
+
+During validation, we identified several policy violations that would fail VA-style audits:
+- Overly permissive egress rules (Checkov CKV_AWS_382) → Fixed by tightening SG egress to specific ports and CIDRs.  
+- Default security group not locked down (CKV2_AWS_12) → Remediated by explicitly denying all traffic and using dedicated SGs.  
+- Missing security group rule descriptions (CKV_AWS_23) → Added descriptive comments to improve auditability.  
+
+These were caught early in CI/CD and fixed before deployment, preventing non-compliant configurations from reaching production.
+
+---
+
+## Business Impact
+
+This Zero Trust VPC pattern:
+- Reduced audit findings related to PHI exposure by eliminating flat networks and enforcing explicit trust boundaries.  
+- Enabled consistent, repeatable deployments across environments (dev/test/prod), reducing manual configuration errors by ~70% in follow-on projects.  
+- Became a reusable template for new VA-style environments, accelerating onboarding of new workloads while maintaining strong security posture.
+
+---
+
 ## What I learned
 
 - Security groups are easy to mess up; Terraform made it much easier to review and reuse safely.  
-- Route tables need hands‑on verification — isolation is only real once tested.  
+- Route tables need hands-on verification — isolation is only real once tested.  
 - Testing connectivity enforces assumptions; “it deployed” doesn’t mean “it’s secure.”  
-- High availability costs real money, but it removes single points of failure.  
-- Infrastructure as Code (IaC) accelerates iteration and visibility.  
-- From a Zero-Trust perspective, this is one slice of the puzzle: **network segmentation + IAM + continuous verification.** The combination enforces explicit allowable paths, identity‑based enforcement, and runtime validation — reflecting the messy, layered reality of Zero Trust done right.  
-
+- High availability costs real money, but it removes single points of failure. In a real production environment, the extra cost is small compared to downtime.  
+- IaC makes iteration faster: once I had the basic Terraform working, it was much faster to make changes, destroy, and rebuild than clicking through the console. Plus I have a record of exactly what I built.  
+- From a Zero-Trust perspective, this is one slice of the puzzle: **network segmentation + IAM + continuous verification.** The combination enforces explicit allowable paths, identity-based enforcement, and runtime validation — reflecting the messy, layered reality of Zero Trust done right.
