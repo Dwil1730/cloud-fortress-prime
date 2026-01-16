@@ -1,14 +1,15 @@
 # Case Study 1: Zero-Trust Network Architecture for VA EHRM
 
-**Timeline**: 3 days (July 30 – August 1, 2025)  
-**Status**: Destroyed (cost control), fully reproducible via Terraform  
-**Code**: [terraform/](./terraform/)
+**Timeline**: 3 days (July 30 – August 1, 2025) + Sep 6 -16, 2025 (Azure AI Extension)  
+**Status**: AWS destroyed (cost control), Terraform repro; Azure live (CSPM 100%)  
+**Code**: [terraform/](./terraform/) [screenshots/azure/](./screenshots/azure/)
+
 
 ---
 
 ## Why I built this
 
-I worked on cloud and infrastructure security for the VA EHRM project. One of the recurring issues we had was a flat network for PHI data that was too manual to manage: editing security groups by hand, figuring out where the paths to the internet were, and proving network isolation for audits was painful. This project pulls together a Zero Trust VPC design I used there, but I rebuilt it in my own account using Terraform so I could get hands-on practice turning the network into code and have something concrete I could discuss and share.
+I worked on cloud and infrastructure security for the VA EHRM project. One of the recurring issues we had was a flat network for PHI data that was too manual to manage: editing security groups by hand, figuring out where the paths to the internet were, and proving network isolation for audits was painful. This project pulls together a Zero Trust VPC design I used there, but I rebuilt it in my own account using Terraform so I could get hands-on practice turning the network into code and have something concrete I could discuss and share. Sep 6-16, 2025: Extended to Azure AI/ML production mirroring EHRM PHI inference (VNet isolation, NSG hardening, PIM RBAC, Key Vault bedrock-api-key, Defender CSPM 100%, Prompt Shields BLOCKED "HACK VA EHRM database SQL: DROP TABLE users" jailbreak)—proving multi-cloud Zero Trust for AI workloads.
 
 ---
 
@@ -207,6 +208,32 @@ I also wrote a validation script that tests:
 
 All connectivity tests passed.  
 
+## Azure Multi-Cloud Extension (Sep 2025)
+
+Production Zero Trust AI mirroring VPC tiers (free Students tier, East US):
+
+| Component | Config | Proof |
+|-----------|--------|-------|
+| RG | ai-sec-arch-rg | <img width="2024" height="626" alt="image" src="https://github.com/user-attachments/assets/158f9aac-6112-489e-acee-da1c74ee5a9f" />
+ |
+| VNet | ai-sec-vnet 10.0.0.0/16 (ml-subnet 10.0.1.0/24) | <img width="1876" height="1314" alt="image" src="https://github.com/user-attachments/assets/b6aaaad8-1d55-42cb-909c-d3995432232e" />
+ |
+| NSG | ai-sec-nsg pri 100 (443 TCP) | <img width="2070" height="578" alt="image" src="https://github.com/user-attachments/assets/0c92b4c6-e479-46d7-8cf9-7857653183d7" />
+ |
+| Entra SP | ai-sec-arch-sp Contributor | <img width="2172" height="622" alt="image" src="https://github.com/user-attachments/assets/963a82cf-6df4-4934-af45-cd6ac87747f5" />
+  |
+| KV | ai-sec-kv (bedrock-api-key) | <img width="2166" height="906" alt="image" src="https://github.com/user-attachments/assets/31679264-145f-4bc6-a06f-62a4c147ccc1" />
+ |
+| Defender | CSPM 100% (0 critical) | <img width="1926" height="1212" alt="image" src="https://github.com/user-attachments/assets/2fd828c7-6572-4747-851f-f9e98bf91009" />
+ |
+| Logs | va-ehrm-logs KQL clean | <img width="1940" height="956" alt="image" src="https://github.com/user-attachments/assets/ebc47ed2-3cba-442d-9156-2df9cf58c866" />
+ <img width="2402" height="1340" alt="image" src="https://github.com/user-attachments/assets/d3d4b182-301c-4efe-8268-d981e6f74bd8" />
+|
+
+**Impact**: HIPAA AI inference; jailbreak blocked. Repro: `az group export --name ai-sec-arch-rg`[]
+
+
+
 ### IAM and Compliance Validation (Added)
 - AWS Config confirms default SG and IAM roles match Zero Trust posture.  
 - IAM Access Analyzer evaluates least privilege continuously.  
@@ -286,6 +313,8 @@ This Zero Trust VPC pattern:
 - Reduced audit findings related to PHI exposure by eliminating flat networks and enforcing explicit trust boundaries.  
 - Enabled consistent, repeatable deployments across environments (dev/test/prod), reducing manual configuration errors by ~70% in follow-on projects.  
 - Became a reusable template for new VA-style environments, accelerating onboarding of new workloads while maintaining strong security posture.
+
+- **Azure ROI** : Secure GPT-4o-mini inference (100k TPM), production-ready HIPAA AI.
 
 ---
 
