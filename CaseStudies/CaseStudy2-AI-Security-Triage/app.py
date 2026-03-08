@@ -5,7 +5,6 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_classic.chains import RetrievalQA
 from langchain_text_splitters import CharacterTextSplitter
 import pandas as pd
-import os
 
 st.title("🛡️ AI Security Triage Demo")
 st.write("Enter an incident description. Adversarial inputs are blocked automatically.")
@@ -20,7 +19,7 @@ def guard_input(query: str) -> str:
 
 @st.cache_resource
 def load_chain():
-    df = pd.read_csv('CaseStudies/ai-security-triage/clean_tickets.csv')
+    df = pd.read_csv('CaseStudies/CaseStudy2-AI-Security-Triage/clean_tickets.csv')
     texts = df['text'].tolist()
     splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     docs = splitter.create_documents(texts)
