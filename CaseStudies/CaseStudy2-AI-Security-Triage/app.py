@@ -5,21 +5,15 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_classic.chains import RetrievalQA
 from langchain_text_splitters import CharacterTextSplitter
 import pandas as pd
+import asyncio
+from guards import battle_guard  # 8-layer defense from guards.py
 
 st.title("🛡️ AI Security Triage Demo")
-st.write("Enter an incident description. Adversarial inputs are blocked automatically.")
-
-def guard_input(query: str) -> str:
-    bad_words = ['ignore', 'rules', 'jailbreak', 'system prompt',
-                 'password', 'admin', 'secret', 'override']
-    for word in bad_words:
-        if word in query.lower():
-            return "Blocked: Adversarial prompt detected - potential jailbreak attempt"
-    return query
+st.write("Enter an incident description. Adversarial inputs are blocked automatically via 8-layer DoD-grade defense.")
 
 @st.cache_resource
 def load_chain():
-    df = pd.read_csv('CaseStudies/CaseStudy2-AI-Security-Triage/clean_tickets.csv')
+    df = pd.read_csv('clean_tickets.csv')  # Adjust path if needed
     texts = df['text'].tolist()
     splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     docs = splitter.create_documents(texts)
@@ -41,14 +35,20 @@ qa_chain = load_chain()
 description = st.text_input("Incident:", "phishing email alert")
 
 if st.button("Triage"):
-    guarded = guard_input(description)
-    if "Blocked" in guarded:
-        st.error(f"🚫 {guarded}")
+    if not description.strip():
+        st.warning("Please enter an incident description.")
     else:
-        result = qa_chain.invoke({"query": guarded})
-        st.success("✅ Recommended Action:")
-        st.write(result['result'])
-        if result.get('source_documents'):
-            st.write("**Sources:**")
-            for doc in result['source_documents']:
-                st.write(f"- {doc.page_content[:150]}")
+        with st.spinner("Running 8-layer adversarial defense..."):
+            guarded_result, reason = asyncio.run(battle_guard(description))
+
+            if guarded_result == "BLOCKED":
+                st.error(f"🚫 BLOCKED: {reason}")
+                st.markdown("**Adversarial input detected — request denied.**")
+            else:
+                result = qa_chain.invoke({"query": description})
+                st.success("✅ Recommended Action:")
+                st.write(result['result'])
+                if result.get('source_documents'):
+                    st.write("**Sources:**")
+                    for doc in result['source_documents']:
+                        st.write(f"- {doc.page_content[:150]}...")

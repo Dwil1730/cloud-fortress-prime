@@ -1,0 +1,8 @@
+# Basic Colang flow to block jailbreaks
+define user jailbreak_attempt
+  "ignore rules" OR "jailbreak" OR "pretend you're" OR "override" OR "system prompt"
+
+define flow block_jailbreak
+  user jailbreak_attempt
+  bot say "BLOCKED: Adversarial input detected"
+  stop
