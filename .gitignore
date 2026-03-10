@@ -24,3 +24,9 @@ __pycache__/
 .DS_Store
 .vscode/
 >>>>>>> 7881a9c80684aaaff865289c8f14a63885e34508
+.streamlit/secrets.toml
+zt_key.txt
+audit_trail.jsonl
+anomaly_svm.pkl
+*.pkl
+*.sb-*
