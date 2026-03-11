@@ -7,7 +7,7 @@
 
 ---
 
-🔴 **Live Demo:** [https://ai-security-triage.streamlit.app](https://ai-security-triage1.streamlit.app/)/
+🔴 **Live Demo:** https://ai-security-triage.streamlit.app/
 
 ### 🎯 Try It Now
 1. Type `phishing email alert` → see AI triage recommendation
