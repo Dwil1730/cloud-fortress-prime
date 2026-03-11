@@ -103,7 +103,7 @@ async def battle_guard(incident: str) -> tuple:
     try:
         iocs = fake_iocs
         for ioc in iocs:
-            if ioc in query.lower():
+            if ioc . lower () in incident.lower():
                 reason = f"CISA IOC Match: '{ioc}'"
                 audit_log(incident, "BLOCKED", reason)
                 return "BLOCKED", reason
