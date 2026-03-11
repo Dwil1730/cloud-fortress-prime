@@ -78,7 +78,7 @@ def audit_log(incident: str, result: str, reason: str):
 async def battle_guard(incident: str) -> tuple:
     query = redact_pii(incident)
 
-    bad_keywords = ["ignore all", "jailbreak", "admin password", "system prompt", "override", "bypass", "rogue"]
+    bad_keywords = ["ignore all", "jailbreak", "admin password", "system prompt", "override", "bypass", "rogue", "disable all", "safety filters", "unrestricted", "respond freely", "no restrictions", "without restrictions", "ignore previous", "ignore your"]
     if any(kw in query.lower() for kw in bad_keywords):
         reason = "Keyword-based adversarial detection"
         audit_log(incident, "BLOCKED", reason)
