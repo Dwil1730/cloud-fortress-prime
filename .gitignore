@@ -24,3 +24,6 @@ __pycache__/
 .DS_Store
 .vscode/
 >>>>>>> 7881a9c80684aaaff865289c8f14a63885e34508
+.streamlit/secrets.toml
+CaseStudies/CaseStudy2-AI-Security-Triage/.streamlit/secrets.toml
+CaseStudies/CaseStudy2-AI-Security-Triage/.streamlit/secrets.toml
