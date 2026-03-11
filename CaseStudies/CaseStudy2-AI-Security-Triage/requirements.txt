@@ -7,3 +7,9 @@ langchain-text-splitters
 faiss-cpu
 sentence-transformers
 pandas
+presidio-analyzer
+presidio-anonymizer
+scikit-learn
+joblib
+cryptography
+anthropic
