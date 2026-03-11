@@ -165,4 +165,4 @@ if st.button("🛡️ Run Triage"):
         csv = df_audit.to_csv(index=False)
         st.download_button("⬇️ Download Full Audit Log (CSV)", csv, "audit_log.csv", "text/csv")
 
-    st.rerun()
+
